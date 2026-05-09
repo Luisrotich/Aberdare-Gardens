@@ -398,6 +398,51 @@
         img, iframe {
             content-visibility: auto;
         }
+        /* SOCIAL FOLLOW SECTION */
+.social-follow{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.follow-text{
+    font-size:16px;
+    font-weight:600;
+    color:#fff;
+    letter-spacing:0.5px;
+}
+
+.social-icon{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:18px;
+    transition:0.3s ease;
+    color:#fff;
+}
+
+/* FACEBOOK */
+.social-icon.facebook{
+    background:#1877f2;
+}
+
+/* TIKTOK */
+.social-icon.tiktok{
+    background:#000;
+}
+
+/* HOVER EFFECT */
+.social-icon:hover{
+    transform:translateY(-4px) scale(1.08);
+    box-shadow:0 8px 18px rgba(0,0,0,0.25);
+}
+        
     </style>
 </head>
 <body>
@@ -437,10 +482,9 @@
     <a href="contact.html">Contact</a>
     <a href="bar.html">Bar</a>
     <div class="footer-social">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+           <a href="https://www.facebook.com/karatinagardens"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.tiktok.com/@aberdaregardens?_r=1&_t=ZS-961Q5aNZFJP"><i class="fab fa-tiktok"></i></a>
+   
     </div>
 </div>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -483,12 +527,18 @@
             <!-- Social & Actions Card -->
             <div class="info-card scroll-reveal">
                 <h3><i class="fas fa-share-alt"></i> Connect With Us</h3>
-                <p>TikTok / Facebook / Instagram:</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/AberdareGardens" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/aberdaregardens/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@aberdaregardens" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-                </div>
+             <!-- SOCIAL FOLLOW SECTION -->
+<div class="social-follow">
+    <span class="follow-text">Follow Us:</span>
+
+    <a href="https://www.facebook.com/karatinagardens" target="_blank" class="social-icon facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@aberdaregardens?_r=1&_t=ZS-961Q5aNZFJP" target="_blank" class="social-icon tiktok">
+        <i class="fab fa-tiktok"></i>
+    </a>
+</div>
                 <div class="contact-actions">
                     <a href="tel:+254713509985" class="contact-btn call-btn"><i class="fas fa-phone-alt"></i> Call Us</a>
                     <a href="mailto:aberdaregardens4@gmail.com?subject=Booking%20Inquiry&body=Hello,%20I%20would%20like%20to%20make%20a%20booking" class="contact-btn email-btn"><i class="fas fa-envelope"></i> Email Us</a>
@@ -508,7 +558,7 @@
             <div class="form-group"><input type="text" id="contactNameModal" placeholder="Your Name" required></div>
             <div class="form-group"><input type="email" id="contactEmailModal" placeholder="Email (optional)"></div>
             <div class="form-group"><textarea id="contactMsgModal" rows="3" placeholder="Your message..." required></textarea></div>
-            <button type="submit" class="btn" style="background: #09a204; width: 100%;"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+            <button type="submit" class="btn" style="background: #09a204; width: 100%;"><i class="fab fa-whatsapp"></i> Send </button>
         </form>
     </div>
 </div>

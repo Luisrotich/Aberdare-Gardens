@@ -520,6 +520,50 @@
     background: rgb(200, 154, 105);
     color: black;
 }
+/* SOCIAL FOLLOW SECTION */
+.social-follow{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.follow-text{
+    font-size:16px;
+    font-weight:600;
+    color:#fff;
+    letter-spacing:0.5px;
+}
+
+.social-icon{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:18px;
+    transition:0.3s ease;
+    color:#fff;
+}
+
+/* FACEBOOK */
+.social-icon.facebook{
+    background:#1877f2;
+}
+
+/* TIKTOK */
+.social-icon.tiktok{
+    background:#000;
+}
+
+/* HOVER EFFECT */
+.social-icon:hover{
+    transform:translateY(-4px) scale(1.08);
+    box-shadow:0 8px 18px rgba(0,0,0,0.25);
+}
   </style>
 </head>
 <body>
@@ -571,10 +615,9 @@
   <a href="contact.html">Contact</a>
   <a href="bar.html">Bar</a>
   <div class="footer-social">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.facebook.com/karatinagardens"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.tiktok.com/@aberdaregardens?_r=1&_t=ZS-961Q5aNZFJP"><i class="fab fa-tiktok"></i></a>
+   
   </div>
 </div>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -582,44 +625,48 @@
 
 <section class="about-slider">
 
-  <div class="slide active" style="background-image: url('https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+  <!-- SLIDE 1 -->
+  <div class="slide active" style="background-image: url('images/image1.jpeg');">
     <div class="overlay"></div>
 
     <div class="slide-text">
       <h2>About Aberdare Gardens</h2>
       <p>A peaceful getaway surrounded by nature and luxury.</p>
-<a href="#about">
-   <button class="transparent-btn">Know more</button>
-</a>
 
+      <a href="#about">
+        <button class="transparent-btn">Know More</button>
+      </a>
     </div>
   </div>
 
-  <div class="slide" style="background-image: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+  <!-- SLIDE 2 -->
+  <div class="slide" style="background-image: url('images/image2.jpeg');">
     <div class="overlay"></div>
 
     <div class="slide-text">
       <h2>Luxury Rooms</h2>
       <p>Comfortable suites designed for relaxation.</p>
 
-<a href="rooms.html">
-   <button class="transparent-btn">Book Now</button>
-</a>
+      <a href="rooms.html">
+        <button class="transparent-btn">Book Now</button>
+      </a>
     </div>
   </div>
 
-   <div class="slide" style="background-image: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+  <!-- SLIDE 3 -->
+  <div class="slide" style="background-image: url('images/image3.jpeg');">
     <div class="overlay"></div>
 
     <div class="slide-text">
       <h2>Events / Lessons</h2>
-      <p>Host your special occasions in our elegant venues including lessons like swimming pools.</p>
+      <p>Host your special occasions in our elegant venues including swimming lessons.</p>
 
-<a href="events.html">
-   <button class="transparent-btn">Learn More</button>
-</a>
+      <a href="events.html">
+        <button class="transparent-btn">Learn More</button>
+      </a>
     </div>
   </div>
+
 </section>
 <!-- About Section -->
 <section id="about">
@@ -714,17 +761,26 @@
           </div>
         </div>
       </div>
+     <!-- SOCIAL FOLLOW SECTION -->
+<div class="social-follow">
+    <span class="follow-text">Follow Us:</span>
+
+    <a href="https://www.facebook.com/karatinagardens" target="_blank" class="social-icon facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@aberdaregardens?_r=1&_t=ZS-961Q5aNZFJP" target="_blank" class="social-icon tiktok">
+        <i class="fab fa-tiktok"></i>
+    </a>
+</div>
     </div>
   </div>
+  
   <div class="footer-bottom">
     <div class="footer-bottom-content">
       <div class="footer-social">
-        <span>Follow Us:</span>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
+       
+     
       <div class="footer-copy-right">
         <p>&copy; 2025 Aberdare Gardens | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
       </div>

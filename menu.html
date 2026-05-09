@@ -397,7 +397,8 @@
         .remove-item { background: #e74c3c; color: white; border: none; border-radius: 30px; padding: 0.3rem 0.8rem; cursor: pointer; font-size: 0.7rem; }
         .cart-total { margin-top: 1rem; font-weight: bold; text-align: right; font-size: 1.1rem; padding-top: 0.5rem; border-top: 2px dashed #ddd; }
         .form-group { margin-bottom: 1rem; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.7rem; border-radius: 20px; border: 1px solid #ddd; font-family: inherit; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.7rem; border-radius: 20px; border: 1px solid #ddd; font-family: inherit; font-size: 0.95rem; }
+        .form-group label { font-weight: 600; margin-bottom: 5px; display: block; color: #2c5a3a; }
         .btn { background: #1e3b2c; color: white; padding: 0.7rem; border: none; border-radius: 40px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s; }
         .btn:hover { background: #c49a6c; color: #1e3b2c; }
         .scroll-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -431,6 +432,8 @@
             #toastMsg { bottom: 100px; white-space: normal; text-align: center; font-size: 0.85rem; }
         }
         .room-card, .event-card, .gallery-img { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+        .form-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .form-row .form-group { flex: 1; min-width: 140px; }
     </style>
 </head>
 <body>
@@ -452,7 +455,7 @@
   <button class="close-sidebar" id="closeSidebarBtn">✕</button>
   <div class="brand"><img src="logo1.png" alt="Aberdare Gardens Logo"><div class="logo-text">Aberdare <span>Gardens</span></div></div>
   <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="rooms.html">Rooms</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a href="bar.html">Bar</a>
-  <div class="footer-bottom"><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+  <div class="footer-bottom"><div class="footer-social"><a href="https://www.facebook.com/karatinagardens" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a><a href="https://www.tiktok.com/@aberdaregardens?_r=1&_t=ZS-961Q5aNZFJP" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a></div></div>
 </div>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -504,7 +507,7 @@
   </div>
 </div>
 
-<!-- FINAL GROUP ORDER MODAL -->
+<!-- FINAL GROUP ORDER MODAL (with LOCATION input added) -->
 <div id="orderModal" class="modal">
   <div class="modal-content">
     <button class="close-modal" data-modal="orderModal">&times;</button>
@@ -513,16 +516,18 @@
       <div class="form-group"><input type="text" id="orderName" placeholder="Contact Person Name" required></div>
       <div class="form-group"><input type="tel" id="orderPhone" placeholder="Phone Number" required></div>
       <div class="form-group"><input type="number" id="numPeople" placeholder="Number of people (e.g., 8)" min="1" required></div>
+      <!-- NEW LOCATION INPUT FIELD -->
+      <div class="form-group"><input type="text" id="orderLocation" placeholder=" Pickup / Delivery Location (e.g., Nyeri Town, Main Gate, or Room number)" required></div>
       <div class="form-group"><textarea rows="4" id="orderItemsSummary" placeholder="Order summary will appear here" readonly style="background:#f9f3e8;"></textarea></div>
       <div class="form-group"><textarea rows="2" id="orderNote" placeholder="Special requests (allergies, spice, serving instructions...)"></textarea></div>
-      <button type="submit" class="btn"> Send Group Order via WhatsApp</button>
+      <button type="submit" class="btn"> Send  Order </button>
     </form>
   </div>
 </div>
 
 <!-- Booking & Contact Modals -->
 <div id="bookingModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="bookingModal">&times;</button><h3> Book a Room</h3><form id="bookingForm"><div class="form-group"><input type="text" id="bookName" placeholder="Full Name" required></div><div class="form-group"><input type="tel" id="bookPhone" placeholder="Phone" required></div><div class="form-group"><input type="email" id="bookEmail" placeholder="Email"></div><div class="form-group"><input type="date" id="checkin" required></div><div class="form-group"><input type="date" id="checkout" required></div><div class="form-group"><select id="roomType"><option>Standard Room</option><option>Deluxe Suite</option><option>Family Cottage</option></select></div><div class="form-group"><input type="number" id="guests" placeholder="Guests" required></div><button type="submit" class="btn">Send Inquiry</button></form></div></div>
-<div id="contactModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="contactModal">&times;</button><h3> Contact Us</h3><form id="contactFormModal"><div class="form-group"><input type="text" id="contactNameModal" placeholder="Your Name" required></div><div class="form-group"><input type="email" id="contactEmailModal" placeholder="Email"></div><div class="form-group"><textarea rows="3" id="contactMsgModal" placeholder="Message..."></textarea></div><button type="submit" class="btn">Send via WhatsApp</button></form></div></div>
+<div id="contactModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="contactModal">&times;</button><h3> Contact Us</h3><form id="contactFormModal"><div class="form-group"><input type="text" id="contactNameModal" placeholder="Your Name" required></div><div class="form-group"><input type="email" id="contactEmailModal" placeholder="Email"></div><div class="form-group"><textarea rows="3" id="contactMsgModal" placeholder="Message..."></textarea></div><button type="submit" class="btn">Send </button></form></div></div>
 <div id="toastMsg"></div>
 
 <script>
@@ -679,7 +684,7 @@ const menuItems = [
   }
 
   function openGroupCheckout() {
-    if(cart.length === 0) { showToast("Add items to your  cart first!"); return; }
+    if(cart.length === 0) { showToast("Add items to your cart first!"); return; }
     let summary = "👥 GROUP ORDER SUMMARY\n\n";
     cart.forEach(item => { summary += `• ${item.name} x ${item.quantity} servings\n`; });
     const totalServe = cart.reduce((s,i)=> s+i.quantity,0);
@@ -694,56 +699,96 @@ const menuItems = [
   function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
   function triggerReveal(){ document.querySelectorAll('.scroll-reveal').forEach(el=>{ if(el.getBoundingClientRect().top<window.innerHeight-100) el.classList.add('revealed'); }); }
 
-  // ---- FIXED FILTER LOGIC ----
+  // ---- FILTER LOGIC ----
   const filterBtn = document.getElementById("filterTriggerBtn");
   const filterDropdown = document.getElementById("filterDropdown");
   const filterOptions = document.querySelectorAll(".filter-option");
   const searchInput = document.getElementById("searchInput");
 
-  // Toggle dropdown on button click + stop propagation
   filterBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     filterDropdown.classList.toggle("active");
   });
-
-  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
       filterDropdown.classList.remove("active");
     }
   });
-
-  // Apply filter when an option is clicked
   filterOptions.forEach(opt => {
     opt.addEventListener("click", (e) => {
       const filterValue = opt.getAttribute("data-filter");
       activeFilter = filterValue;
-      // Update active class styling
       filterOptions.forEach(o => o.classList.remove("active-filter"));
       opt.classList.add("active-filter");
-      // Close dropdown
       filterDropdown.classList.remove("active");
-      // Re-render menu
       renderMenu();
     });
   });
-
-  // Search input event
   searchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value;
     renderMenu();
   });
 
-  // Order form submit
-  document.getElementById("orderForm")?.addEventListener("submit",(e)=>{
+document.getElementById("orderForm")?.addEventListener("submit", (e) => {
     e.preventDefault();
-    let name = document.getElementById("orderName").value, phone = document.getElementById("orderPhone").value, people = document.getElementById("numPeople").value, itemsSummary = document.getElementById("orderItemsSummary").value, note = document.getElementById("orderNote").value;
-    let msg = `🍽️ *GROUP ORDER - ABERDARE GARDENS*%0A👤 Contact: ${name}%0A📞 Phone: ${phone}%0A👥 Number of people: ${people}%0A📋 Order Details:%0A${itemsSummary.replace(/\n/g, '%0A')}%0A📝 Special request: ${note}%0A📍 Ready for pickup/delivery.`;
-    sendWhatsApp(`https://wa.me/254713509985?text=${msg}`);
-    showToast("✅ Group order sent! We'll confirm for your party.");
-    cart = []; updateCartBadgeAndStorage(); renderMenu();
-    e.target.reset(); document.getElementById("orderModal").classList.remove("active");
-  });
+
+    const name = document.getElementById("orderName").value.trim();
+    const phone = document.getElementById("orderPhone").value.trim();
+    const people = document.getElementById("numPeople").value.trim();
+    const locationVal = document.getElementById("orderLocation").value.trim();
+    const itemsSummary = document.getElementById("orderItemsSummary").value.trim();
+    const note = document.getElementById("orderNote").value.trim();
+
+    // VALIDATION
+    if (!name || !phone || !people || !locationVal) {
+        showToast("Please fill all required fields");
+        return;
+    }
+
+    // BUILD MESSAGE (CLEAN TEXT ONLY)
+    const message =
+`GROUP ORDER - ABERDARE GARDENS
+
+Contact Person: ${name}
+Phone: ${phone}
+Number of People: ${people}
+Location: ${locationVal}
+
+ORDER DETAILS:
+${itemsSummary || "No items selected"}
+
+Special Request:
+${note || "None"}
+
+We look forward to your confirmation!`;
+
+    // CALL WHATSAPP FUNCTION
+    sendWhatsAppMessage(message);
+
+    showToast("Order sent successfully. We will confirm shortly.");
+
+    // RESET CART
+    cart = [];
+    updateCartBadgeAndStorage();
+    renderMenu();
+
+    e.target.reset();
+    document.getElementById("orderModal").classList.remove("active");
+});
+
+
+// ===============================
+// WHATSAPP FUNCTION (CORE ENGINE)
+// ===============================
+function sendWhatsAppMessage(message) {
+    const phoneNumber = "254713509985"; // your WhatsApp number (no + sign)
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(url, "_blank");
+}
 
   // Auxiliary forms
   document.getElementById("bookingForm")?.addEventListener("submit",(e)=>{ e.preventDefault(); let name=document.getElementById("bookName").value, phone=document.getElementById("bookPhone").value, email=document.getElementById("bookEmail").value, checkin=document.getElementById("checkin").value, checkout=document.getElementById("checkout").value, room=document.getElementById("roomType").value, guests=document.getElementById("guests").value; let msg=`🏨 *ROOM BOOKING*%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📅 Check-in: ${checkin}%0A📅 Check-out: ${checkout}%0A🛏️ Room: ${room}%0A👥 Guests: ${guests}`; sendWhatsApp(`https://wa.me/254713509985?text=${msg}`); showToast("Booking request sent"); e.target.reset(); document.getElementById("bookingModal").classList.remove("active"); });
@@ -751,7 +796,7 @@ const menuItems = [
   document.querySelectorAll(".close-modal").forEach(btn=>{ btn.addEventListener("click",()=>{ const modalId=btn.getAttribute("data-modal"); document.getElementById(modalId).classList.remove("active"); }); });
   window.addEventListener("click",(e)=>{ if(e.target.classList.contains("modal")) e.target.classList.remove("active"); });
 
-  // Floating cart button: opens cart modal
+  // Floating cart button
   document.getElementById("floatingCartBtn")?.addEventListener("click", () => { renderCartModal(); document.getElementById("cartModal").classList.add("active"); });
   document.getElementById("proceedToGroupCheckout")?.addEventListener("click", openGroupCheckout);
   
@@ -759,7 +804,7 @@ const menuItems = [
   const savedGroupCart = localStorage.getItem("aberGroupCart");
   if(savedGroupCart) { try { cart = JSON.parse(savedGroupCart); updateCartBadgeAndStorage(); } catch(e){} }
   
-  // Minimal render for rooms/events/gallery sections (prevent errors)
+  // Minimal render for rooms/events/gallery sections
   const roomsData = [{ name: "Standard Room", capacity:"2 guests", img:"https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=400" }];
   const eventsData = [{ name:"Wedding Packages", desc:"Lush garden", img:"https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=400" }];
   const galleryImages = ["https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=400"];
@@ -776,4 +821,4 @@ const menuItems = [
   window.addEventListener("load",()=>{ renderMenu(); renderRooms(); renderEvents(); renderGallery(); updateCartBadgeAndStorage(); window.addEventListener("scroll", triggerReveal); triggerReveal(); });
 </script>
 </body>
-</html>
+</html> 
