@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Aberdare Gardens | Events & Celebrations</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fefaf5;
+            color: #2c2b28;
+            scroll-behavior: smooth;
+        }
+
+        /* preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s;
+        }
+
+        /* navbar sticky */
+        .navbar {
+            background: #079d1dea;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 12px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+      .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+        .brand img {
+           width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #D4AF37;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d1d9d1;
+        }
+
+        .logo-text span {
+            color: #ff8402;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #ebf0ea;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #b47c2e;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #ecf2ef;
+        }
+
+   /* mobile sidebar */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100%;
+    background: #078900;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    z-index: 1100;
+    transition: right 0.3s ease;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    /* ✅ ADD THIS */
+    color: #ffffff;
+}
+
+/* ensure ALL text inside is white */
+.mobile-sidebar * {
+    color: #ffffff;
+}
+
+/* optional: links styling */
+.mobile-sidebar a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.mobile-sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* open state */
+.mobile-sidebar.open {
+    right: 0;
+}
+
+/* close button */
+.close-sidebar {
+    align-self: flex-end;
+    background: red;
+    border: none;
+    border-radius: 10px;
+      height: 30px;
+            width: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff; /* already white */
+}
+
+/* overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1050;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.sidebar-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+        /* events hero & layout */
+        .events-hero {
+            background: linear-gradient(135deg, #e9f3e6 0%, #d9e6cf 100%);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1e3c2c;
+            margin-bottom: 20px;
+        }
+
+        .event-description {
+            background: linear-gradient(to right, #ffffff, #f8f4ed);
+            padding: 25px;
+            border-radius: 28px;
+            margin: 30px auto;
+            border-left: 6px solid #09a204;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .event-description p {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #2d3e2b;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+
+        .img-placeholder {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px 20px 24px;
+        }
+
+        .card-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #1e3c2c;
+        }
+
+        .card-content p {
+            color: #5a5a5a;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #b47c2e;
+            margin-bottom: 18px;
+            font-size: 1rem;
+            display: none;    /* hide prices as requested */
+        }
+
+        .order-now-btn {
+            background: #1e3c2c;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .order-now-btn:hover {
+            background: #b47c2e;
+        }
+
+        /* swimming section */
+        .swim-section {
+            background: #ecf3e8;
+            border-radius: 48px;
+            padding: 36px 28px;
+            margin: 48px 0 60px;
+            text-align: center;
+        }
+
+        .swim-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1e3c2c;
+            margin-bottom: 12px;
+        }
+
+        .swim-styles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            margin: 28px 0;
+        }
+
+        .swim-badge {
+            background: white;
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 500;
+            color: #1e3c2c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .swim-description {
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .btn-swim {
+            background: #b47c2e;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 18px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 90%;
+            padding: 28px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 28px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+        }
+
+        .btn {
+            background: #1e3c2c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 40px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* toast */
+        #toastMsg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e3c2c;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            opacity: 0;
+            transition: 0.2s;
+            z-index: 2100;
+            pointer-events: none;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px;
+            background: #1e2a1b;
+            color: #d4d9cf;
+            margin-top: 40px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-container">
+       <a href="index.html" class="brand">
+    <img src="logo1.png" alt="Aberdare Gardens Logo">
+    <div class="logo-text">
+        Aberdare <span>Gardens</span>
+    </div>
+</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="bar.html">Bar</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+</nav>
+
+<div class="mobile-sidebar" id="mobileSidebar">
+    <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+    <div class="brand">
+        <img src="logo1.png" alt="logo">
+        <div class="logo-text">Aberdare <span>Gardens</span></div>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="rooms.html">Rooms</a>
+    <a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="bar.html">Bar</a>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<section id="events">
+    <div class="events-hero">
+        <div class="container">
+            <h2>Memorable Events & Celebrations</h2>
+            <div class="event-description">
+                <p>From timeless traditions to modern festivities, Aberdare Gardens offers the perfect setting. Host weddings, dowry ceremonies, bridal showers, corporate retreats, Mugithi nights, honeymoon escapes, and more. Our versatile spaces and scenic beauty make every occasion extraordinary.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card-grid" id="eventsGrid"></div>
+
+        <!-- Swimming training section (professional sessions) -->
+        <div class="swim-section scroll-reveal">
+            <h3><i class="fas fa-swimmer"></i> Professional Swimming Training</h3>
+            <p class="swim-description">We offer professional swimming sessions for CBC, individuals of all ages and skill levels. Looking to master the art of swimming or give your kids a vital life skill? Aberdare Gardens And Resort Karatina is the place.</p>
+            <div class="swim-styles">
+                <span class="swim-badge">Diving</span>
+                <span class="swim-badge">Mushroom float</span>
+                <span class="swim-badge">Front Crawl</span>
+                <span class="swim-badge">Breaststroke</span>
+                <span class="swim-badge">Butterfly</span>
+                <span class="swim-badge">Freestyle</span>
+                <span class="swim-badge">Backstroke</span>
+                <span class="swim-badge">Underwater</span>
+                <span class="swim-badge">Sidestroke</span>
+            </div>
+            <p style="margin-top: 12px;"><strong>Our Swimming Instructor</strong> is always ready to make you a professional swimmer.</p>
+            <p>Aberdare Gardens And Resort Karatina.<br> 0713509985 For enquiry and booking swimming lesson.</p>
+            <button class="btn-swim" id="swimInquiryBtn">Enquire Swimming Lessons</button>
+        </div>
+    </div>
+</section>
+
+<!-- Modals -->
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" data-modal="contactModal">&times;</button>
+        <h3>Send Inquiry for Event or Swimming</h3>
+        <form id="contactFormModal">
+            <div class="form-group"><input type="text" id="contactNameModal" placeholder="Your Name" required></div>
+            <div class="form-group"><input type="email" id="contactEmailModal" placeholder="Email (optional)"></div>
+            <div class="form-group"><textarea id="contactMsgModal" rows="3" placeholder="Tell us about your event or swimming lesson..." required></textarea></div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+</div>
+
+<div id="toastMsg">Message sent ✅</div>
+<div class="whatsapp-float" id="whatsappFloatBtn"><i class="fab fa-whatsapp"></i></div>
+
+<script>
+    // --- UPDATED EVENTS DATA (No prices, hidden price class)
+    const eventsData = [
+        { name: "Wedding Packages", desc: "Lush garden & river views, full catering, elegant decor", img: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Dowry / Ruracio", desc: "Traditional ceremony setup with cultural authenticity", img: "https://images.pexels.com/photos/2101148/pexels-photo-2101148.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Birthday Parties", desc: "Swimming pool access, BBQ packages, custom decorations", img: "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Team Building", desc: "Corporate retreats, outdoor games, conference facilities", img: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Bridal Shower", desc: "Intimate party setups, catering, garden atmosphere", img: "https://images.pexels.com/photos/2101146/pexels-photo-2101146.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Baby Shower", desc: "Joyful celebration with pastel themes and refreshments", img: "https://images.pexels.com/photos/6934760/pexels-photo-6934760.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Pool Parties", desc: "Exclusive poolside event with music & catering", img: "https://images.pexels.com/photos/261395/pexels-photo-261395.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Camping Site", desc: "Night camping under stars, bonfire & nature trails", img: "https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Photoshoot", desc: "Scenic backdrops: gardens, river, resort architecture", img: "https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Corporate Events", desc: "Conferencing, seminars, team lunches with modern AV", img: "https://images.pexels.com/photos/811217/pexels-photo-811217.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Mugithi Nights", desc: "Live Kikuyu mugithi music, dance, and local vibes", img: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { name: "Honeymoon", desc: "Romantic getaway, serene cottages, private dinners", img: "https://images.pexels.com/photos/2507011/pexels-photo-2507011.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    ];
+
+    // additional generic images fallback if needed
+    function renderEvents() {
+        const grid = document.getElementById("eventsGrid");
+        if (!grid) return;
+        grid.innerHTML = eventsData.map(ev => `
+            <div class="event-card scroll-reveal">
+                <div class="img-placeholder" style="background-image: url('${ev.img}'); background-size: cover;"></div>
+                <div class="card-content">
+                    <h3>${ev.name}</h3>
+                    <p>${ev.desc}</p>
+                    <div class="price" style="display: none;"> </div>
+                    <button class="order-now-btn event-inq" data-event="${ev.name}">Inquire Now</button>
+                </div>
+            </div>
+        `).join('');
+        // Attach inquire handlers
+        document.querySelectorAll('.event-inq').forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const eventName = btn.getAttribute("data-event") || "Event";
+                // prefill modal message with event name
+                const msgArea = document.getElementById("contactMsgModal");
+                if(msgArea) msgArea.value = `I am interested in: ${eventName}. Please share details.`;
+                document.getElementById("contactModal").classList.add("active");
+            });
+        });
+        triggerReveal();
+    }
+
+    // reuse WhatsApp helper
+    function sendWhatsApp(url) { window.open(url, '_blank'); }
+    function showToast(msg) { 
+        const toast = document.getElementById("toastMsg");
+        toast.innerText = msg;
+        toast.style.opacity = "1";
+        setTimeout(() => toast.style.opacity = "0", 2800);
+    }
+
+    // Booking / contact modal submission -> WhatsApp
+    document.getElementById("contactFormModal")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let name = document.getElementById("contactNameModal").value;
+        let email = document.getElementById("contactEmailModal").value;
+        let msg = document.getElementById("contactMsgModal").value;
+        let fullMsg = `*EVENT / SWIMMING INQUIRY*%0A👤 Name: ${name}%0A📧 Email: ${email}%0A💬 Message: ${msg}`;
+        sendWhatsApp(`https://wa.me/254713509985?text=${fullMsg}`);
+        showToast("Inquiry sent via WhatsApp ✅");
+        e.target.reset();
+        document.getElementById("contactModal").classList.remove("active");
+    });
+
+    // Swimming inquiry button
+    document.getElementById("swimInquiryBtn")?.addEventListener("click", () => {
+        const msgField = document.getElementById("contactMsgModal");
+        if(msgField) msgField.value = "Hello, I would like to book swimming lessons (professional training for CBC / all ages). Please share schedule and fees.";
+        document.getElementById("contactModal").classList.add("active");
+    });
+
+    // WhatsApp float button
+    document.getElementById("whatsappFloatBtn")?.addEventListener("click", () => {
+        sendWhatsApp("https://wa.me/254713509985?text=Hello%20Aberdare%20Gardens%2C%20I%27d%20like%20to%20inquire%20about%20events%20or%20swimming%20lessons.");
+    });
+
+    // Modal close handlers
+    document.querySelectorAll(".close-modal").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const modalId = btn.getAttribute("data-modal");
+            if (modalId) document.getElementById(modalId).classList.remove("active");
+            else btn.closest(".modal")?.classList.remove("active");
+        });
+    });
+    window.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal")) e.target.classList.remove("active");
+    });
+
+    // mobile sidebar logic
+    const mobileSidebar = document.getElementById("mobileSidebar");
+    const overlaySide = document.getElementById("sidebarOverlay");
+    document.getElementById("mobileMenuBtn")?.addEventListener("click", () => {
+        mobileSidebar.classList.add("open");
+        overlaySide.classList.add("active");
+    });
+    document.getElementById("closeSidebarBtn")?.addEventListener("click", () => {
+        mobileSidebar.classList.remove("open");
+        overlaySide.classList.remove("active");
+    });
+    overlaySide?.addEventListener("click", () => {
+        mobileSidebar.classList.remove("open");
+        overlaySide.classList.remove("active");
+    });
+
+    // reveal animation on scroll
+    function triggerReveal() {
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+                el.classList.add('revealed');
+            }
+        });
+    }
+
+    window.addEventListener("scroll", triggerReveal);
+    window.addEventListener("load", () => {
+        setTimeout(() => {
+            const pre = document.getElementById("preloader");
+            if (pre) pre.style.display = "none";
+        }, 500);
+        renderEvents();
+        triggerReveal();
+    });
+
+    // dummy functions to avoid missing references from generic code (rooms/gallery scripts but not on this page but prevents error)
+    if (!document.getElementById("menuGrid")) console.log("events page only");
+</script>
+
+<footer>
+    <p>© 2025 Aberdare Gardens Resort – Karatina | Memorable Events & Professional Swimming Lessons</p>
+    <p style="font-size:0.8rem; margin-top: 8px;"> Aberdare Gardens And Resort Karatina | 📞 0713509985</p>
+</footer>
+</body>
+</html>

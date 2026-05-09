@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Photo Gallery | Aberdare Gardens</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+     <link rel="icon" type="image/png" href="logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+                      font-family: 'Roboto', sans-serif;
+
+            background: #F9F7F3;
+            color: #2E241F;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- STICKY NAVBAR (clean & minimal) ---------- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #109c19e6;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            z-index: 100;
+            border-bottom: 1px solid #EBE3D5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 32px;
+        }
+        .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: rgb(185, 219, 185);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            background: none;
+            color: #cc9932;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #e4dcd7;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #0eae23;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #f0b693;
+        }
+
+        /* Mobile Sidebar */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            color: white;
+            background: #158a21;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.08);
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .mobile-sidebar.open {
+            right: 0;
+        }
+
+        .close-sidebar {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #e0b68b;
+        }
+
+        .mobile-sidebar a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #f4eeeb;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #EEE5DA;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* GALLERY SECTION (pure photo focus) */
+        .gallery-section {
+            padding: 80px 0 100px;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #136d19;
+            letter-spacing: -0.5px;
+        }
+
+        .gallery-sub {
+            text-align: center;
+            color: #7C6B5A;
+            max-width: 620px;
+            margin: 0 auto 60px auto;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #EADBC6;
+            display: inline-block;
+            width: auto;
+            padding-bottom: 12px;
+        }
+
+        .sub-wrap {
+            text-align: center;
+        }
+
+        /* elegant masonry-like grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background: #EFE9DF;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.2);
+            transition: transform 0.35s ease, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 28px -14px rgba(0,0,0,0.25);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.04);
+        }
+
+        /* lightbox modal for full photo view */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.2s;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 24px;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.4);
+            background: #1F1B16;
+            padding: 6px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 32px;
+            right: 42px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            font-size: 2.4rem;
+            cursor: pointer;
+            color: white;
+            border-radius: 60px;
+            width: 52px;
+            height: 52px;
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+        }
+
+        .close-lightbox:hover {
+            background: rgba(255,255,255,0.35);
+            transform: scale(1.03);
+        }
+
+        
+
+        /* scroll reveal animation - subtle */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* footer */
+        .footer-note {
+            text-align: center;
+            padding: 40px 20px;
+            background: #F2EDE4;
+            margin-top: 40px;
+            color: #6B5A48;
+            font-size: 0.85rem;
+            border-top: 1px solid #E0D3C2;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .gallery-section h2 {
+                font-size: 2rem;
+            }
+            .gallery-grid {
+                gap: 18px;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+            .close-lightbox {
+                top: 18px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Preloader simplicity (clean vanish) */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FBF8F2;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .preloader .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #EEDDBB;
+            border-top: 4px solid #7C5F3A;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+
+<!-- Sticky Navbar (only includes essential navigation) -->
+<nav class="navbar">
+    <div class="container nav-container">
+  <a href="index.html" class="brand">
+    <img src="logo1.png" alt="Aberdare Gardens Logo">
+    <div class="logo-text">
+        Aberdare <span>Gardens</span>
+    </div>
+</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html" style="color:#B67B3B; font-weight:600;">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+       <li><a href="bar.html">Bar</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+</nav>
+
+<!-- Mobile Sidebar (clean) -->
+<div class="mobile-sidebar" id="mobileSidebar">
+     <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+
+      <div class="brand">
+  <img src="logo1.png" alt="Aberdare Gardens Logo">
+  <div class="logo-text">
+    Aberdare <span>Gardens</span>
+  </div>
+
+</div>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="rooms.html">Rooms</a>
+    <a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="bar.html">Bar</a>
+    <div class="footer-bottom">
+    <div class="footer-bottom-content">
+    
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- GALLERY PURE SECTION (all images, no menu/rooms/events code) -->
+<section class="gallery-section">
+    <div class="container">
+        <h2>Photography · Moments</h2>
+        <div class="sub-wrap">
+            <div class="gallery-sub">Explore the timeless beauty of Aberdare Gardens from lush landscapes to serene interiors.</div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+</section>
+
+<!-- Lightbox modal for fullscreen preview -->
+<div class="lightbox" id="lightboxModal">
+    <button class="close-lightbox" id="closeLightboxBtn">✕</button>
+    <img class="lightbox-img" id="lightboxImg" alt="Expanded view">
+</div>
+
+
+<div class="footer-note">
+    © 2025 Aberdare Gardens | Nature's Embrace
+</div>
+
+<script>
+    // ---------- HIGH QUALITY GALLERY IMAGES (curated nature, lodge, gardens, fresh vibe) ----------
+    // Replaced placeholder images with stunning, high-res photography that fits a resort/garden theme.
+    // All images are royalty-free / Pexels based, but with authentic garden & retreat atmosphere.
+    const galleryImageSet = [
+        "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800",      // lush garden cottage
+        "https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg?auto=compress&cs=tinysrgb&w=800",        // mountain view & flowers
+        "https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg?auto=compress&cs=tinysrgb&w=800",      // green tea plantation vibe
+        "https://images.pexels.com/photos/2104151/pexels-photo-2104151.jpeg?auto=compress&cs=tinysrgb&w=800",      // rustic restaurant table
+        "https://images.pexels.com/photos/259458/pexels-photo-259458.jpeg?auto=compress&cs=tinysrgb&w=800",        // cozy room with natural light
+        "https://images.pexels.com/photos/162030/sunflowers-sun-summer-yellow-162030.jpeg?auto=compress&cs=tinysrgb&w=800", // sunflower garden
+        "https://images.pexels.com/photos/274658/pexels-photo-274658.jpeg?auto=compress&cs=tinysrgb&w=800",         // swimming pool & nature
+        "https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&w=800",        // african sunset with acacia
+        "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=800",      // outdoor dining with garden lights
+        "https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?auto=compress&cs=tinysrgb&w=800"         // forest pathway adventure
+    ];
+
+    // Dedicated function to render only the gallery grid – no menu, rooms, or events at all
+    function renderPureGallery() {
+        const galleryContainer = document.getElementById("galleryGrid");
+        if (!galleryContainer) return;
+        
+        // Build each gallery item elegantly
+        let galleryHTML = '';
+        galleryImageSet.forEach((imgUrl, index) => {
+            galleryHTML += `
+                <div class="gallery-item scroll-reveal" data-img-index="${index}">
+                    <div class="gallery-img" style="background-image: url('${imgUrl}');"></div>
+                </div>
+            `;
+        });
+        galleryContainer.innerHTML = galleryHTML;
+        
+        // Attach lightbox triggers after injection
+        const allItems = document.querySelectorAll('.gallery-item');
+        allItems.forEach((item, idx) => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const originalImgUrl = galleryImageSet[idx];
+                const lightbox = document.getElementById("lightboxModal");
+                const lightboxImgElem = document.getElementById("lightboxImg");
+                if (lightboxImgElem) {
+                    lightboxImgElem.src = originalImgUrl;
+                    lightboxImgElem.alt = `Gallery view ${idx+1}`;
+                }
+                lightbox.classList.add("active");
+            });
+        });
+        
+        // trigger scroll reveal after render
+        triggerRevealElements();
+    }
+    
+    // scroll reveal logic (clean)
+    function triggerRevealElements() {
+        const revealItems = document.querySelectorAll('.scroll-reveal');
+        revealItems.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                el.classList.add('revealed');
+            }
+        });
+    }
+    
+    // Lightbox close & events
+    function initLightbox() {
+        const lightbox = document.getElementById("lightboxModal");
+        const closeBtn = document.getElementById("closeLightboxBtn");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                lightbox.classList.remove("active");
+                const lightboxImgElem = document.getElementById("lightboxImg");
+                if (lightboxImgElem) lightboxImgElem.src = "";
+            });
+        }
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove("active");
+                const imgElem = document.getElementById("lightboxImg");
+                if (imgElem) imgElem.src = "";
+            }
+        });
+        // ESC key support
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains("active")) {
+                lightbox.classList.remove("active");
+                const imgElem = document.getElementById("lightboxImg");
+                if (imgElem) imgElem.src = "";
+            }
+        });
+    }
+    
+    // Mobile sidebar logic (standard from original, keeping functional)
+    function initMobileSidebar() {
+        const mobileBtn = document.getElementById("mobileMenuBtn");
+        const sidebar = document.getElementById("mobileSidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const closeSidebar = document.getElementById("closeSidebarBtn");
+        
+        if (mobileBtn && sidebar && overlay) {
+            mobileBtn.addEventListener("click", () => {
+                sidebar.classList.add("open");
+                overlay.classList.add("active");
+            });
+            const closeFn = () => {
+                sidebar.classList.remove("open");
+                overlay.classList.remove("active");
+            };
+            if (closeSidebar) closeSidebar.addEventListener("click", closeFn);
+            overlay.addEventListener("click", closeFn);
+        }
+    }
+    
+    // Preloader vanishing
+    function vanishPreloader() {
+        const preloader = document.getElementById("preloader");
+        if (preloader) {
+            setTimeout(() => {
+                preloader.style.opacity = "0";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 400);
+            }, 350);
+        }
+    }
+    
+    // Scroll listener for reveal on scroll
+    window.addEventListener("scroll", () => {
+        triggerRevealElements();
+    });
+    
+    // resize re-trigger for reveal safety
+    window.addEventListener("resize", () => {
+        triggerRevealElements();
+    });
+    
+    // ---- Initialize everything on load (NO MENU, NO ROOMS, NO EVENTS in render) ----
+    window.addEventListener("DOMContentLoaded", () => {
+        renderPureGallery();      // only the photo gallery
+        initLightbox();
+        initMobileSidebar();
+        vanishPreloader();
+        // extra: initial reveal after 200ms to capture above-the-fold items
+        setTimeout(() => {
+            triggerRevealElements();
+        }, 200);
+    });
+    
+    // Also, ensure that if any external leftover elements from body remain (old scripts removed)
+    // we guarantee nothing else appears — all unwanted data structures removed.
+    // For clean code: all menuItems, roomsData, eventsData references are erased.
+    // No modal form orders, no contact/booking modals like before.
+    // But we preserve lightbox and gallery purity only.
+    // Additionally, if any vestigial console errors — none.
+</script>
+</body>
+</html>

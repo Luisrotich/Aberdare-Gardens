@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Aberdare Gardens & Resort | Luxury Stay & Dining in Karatina</title>
+  <link rel="icon" type="image/png" href="logo1.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FEF9F0;
+      color: #2A2A28;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, .logo-text, .slide-text h2, .vm-box h2 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- PRELOADER ---------- */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f8f8f8;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+    .preloader-content {
+      text-align: center;
+    }
+    .loader-ring {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      border: 3px solid #E2DCCD;
+      border-top: 3px solid #B47C2E;
+      border-radius: 50%;
+      animation: spin 0.4s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preloader-logo img {
+      width: 55px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .preloader-content p {
+      font-family: 'Playfair Display';
+      font-size: 1.2rem;
+      color: #2C5F2D;
+      letter-spacing: 1px;
+    }
+    @keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      background: rgba(2, 113, 28, 0.96);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+   .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+    .brand img {
+         width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #D4AF37;
+            background: #f3e5c0; /* placeholder bg while loading */
+       
+    }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffbb00;
+    }
+    .logo-text span {
+      color: #f9f9f9;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #ffffff;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #e78803;
+    }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #f8fbf9;
+    }
+
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+          position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: #02801b;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.3);
+            z-index: 1100;
+            padding: 2rem 1.5rem;
+            transition: right 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        
+    }
+    .mobile-sidebar.open {
+      right: 0;
+    }
+    .close-sidebar {
+        align-self: flex-end;
+            background: #c9302c;
+            border: none;
+            border-radius: 30px;
+            height: 34px;
+            width: 34px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+         }
+          .mobile-sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+          }
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1050;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .sidebar-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* ---------- SLIDER SECTION ---------- */
+    .about-slider {
+      position: relative;
+      height: 85vh;
+      min-height: 500px;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+    }
+    .slide-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      max-width: 700px;
+      padding: 24px;
+      background: rgba(56, 61, 59, 0.55);
+      backdrop-filter: blur(5px);
+      border-radius: 32px;
+    }
+    .slide-text h2 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      color: #f89101;
+    }
+    .slide-text p {
+      font-size: 1.2rem;
+    }
+
+    /* ---------- ABOUT SECTION ---------- */
+    #about {
+      padding: 80px 0 40px;
+    }
+    h2 {
+      font-size: 2.6rem;
+      text-align: center;
+      color: #00431e;
+      margin-bottom: 48px;
+      position: relative;
+    }
+    h2:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #B47C2E;
+      margin: 12px auto 0;
+      border-radius: 4px;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .info-card {
+      background: white;
+      border-radius: 28px;
+      padding: 32px 28px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+      transition: transform 0.25s;
+      border: 1px solid #F0E5D8;
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+    .info-card h3 {
+      font-size: 1.7rem;
+      color: #2C5F2D;
+    }
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .service-tag {
+    background: transparent;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #ff8800;
+    border: 2px solid #063202;
+    backdrop-filter: blur(4px);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+.service-tag:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+}
+    .info-card ul li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-card ul li:before {
+      content: "✓";
+      color: #2C5F2D;
+      font-weight: bold;
+    }
+
+    /* Vision & Mission */
+    .vision-mission {
+      margin: 60px 0 40px;
+    }
+    .vision-mission .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+    }
+    .vm-box {
+      flex: 1;
+      min-width: 260px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: 0.2s;
+      border-bottom: 4px solid #B47C2E;
+    }
+    .vm-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1E3C2C;
+    }
+    .vm-box p {
+      line-height: 1.6;
+      color: #4A4A4A;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25D366;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: 0.2s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+      background: #20b85f;
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E3C2C;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 500;
+      opacity: 0;
+      transition: 0.2s;
+      z-index: 2100;
+      pointer-events: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #1A2A1A;
+      color: #E2DCCD;
+      margin-top: 60px;
+    }
+    .footer-area {
+      padding: 60px 0 40px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+    .footer-logo img {
+      width: 70px;
+      background: white;
+      border-radius: 18px;
+      padding: 6px;
+    }
+    .footer-brand h3 {
+      font-family: 'Playfair Display';
+      font-size: 1.4rem;
+      margin: 12px 0 4px;
+    }
+    .footer-tittle h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #D4B87A;
+    }
+    .footer-tittle ul {
+      list-style: none;
+    }
+    .footer-tittle li {
+      margin-bottom: 12px;
+    }
+    .footer-tittle a {
+      color: #E2DCCD;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .footer-tittle a:hover {
+      color: #B47C2E;
+    }
+    .contact-info li {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 20px 0;
+    }
+    .footer-bottom-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .footer-social a {
+      color: #E2DCCD;
+      font-size: 1.2rem;
+      transition: 0.2s;
+    }
+    .footer-social a:hover {
+      color: #B47C2E;
+    }
+
+    /* scroll reveal */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.7s ease;
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .slide-text h2 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+    }
+    .transparent-btn{
+    background: transparent;
+    border: 2px solid rgb(64, 255, 0);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.transparent-btn:hover{
+    background: rgb(200, 154, 105);
+    color: black;
+}
+  </style>
+</head>
+<body>
+<div id="preloader">
+  <div class="preloader-content">
+    <div class="loader-ring">
+      <div class="preloader-logo">
+        <img src="logo1.png" alt="Logo">
+      </div>
+    </div>
+    <p>Aberdare Gardens & Resort</p>
+  </div>
+</div>
+
+<!-- Sticky Navbar -->
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="brand">
+    <img src="logo1.png" alt="Aberdare Gardens Logo">
+    <div class="logo-text">
+        Aberdare <span>Gardens</span>
+    </div>
+</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="rooms.html">Rooms</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="bar.html">Bar</a></li>
+    </ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+  </div>
+</nav>
+
+<!-- Mobile Sidebar -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+  <div class="brand">
+    <img src="logo1.png" alt="Logo">
+    <div class="logo-text">Aberdare <span>Gardens</span></div>
+  </div>
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="rooms.html">Rooms</a>
+  <a href="events.html">Events</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+  <a href="bar.html">Bar</a>
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Hero Slider -->
+
+<section class="about-slider">
+
+  <div class="slide active" style="background-image: url('https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+    <div class="overlay"></div>
+
+    <div class="slide-text">
+      <h2>About Aberdare Gardens</h2>
+      <p>A peaceful getaway surrounded by nature and luxury.</p>
+<a href="#about">
+   <button class="transparent-btn">Know more</button>
+</a>
+
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+    <div class="overlay"></div>
+
+    <div class="slide-text">
+      <h2>Luxury Rooms</h2>
+      <p>Comfortable suites designed for relaxation.</p>
+
+<a href="rooms.html">
+   <button class="transparent-btn">Book Now</button>
+</a>
+    </div>
+  </div>
+
+   <div class="slide" style="background-image: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+    <div class="overlay"></div>
+
+    <div class="slide-text">
+      <h2>Events / Lessons</h2>
+      <p>Host your special occasions in our elegant venues including lessons like swimming pools.</p>
+
+<a href="events.html">
+   <button class="transparent-btn">Learn More</button>
+</a>
+    </div>
+  </div>
+</section>
+<!-- About Section -->
+<section id="about">
+  <div class="container">
+    <h2>About Us</h2>
+    <div class="about-grid">
+      <div class="info-card scroll-reveal">
+        <h3>Hidden Gem in Karatina</h3>
+        <p style="margin-top: 15px;">Aberdare Gardens & Resort is a tranquil haven located in Karatina, Nyeri County, known for panoramic ambience, lush landscaped gardens, and serene river views. <strong style="color: green;">We offer modern accommodation, exquisite dining, recreation, and event hosting.</strong></p>
+        <p><strong>Location & Accessibility:</strong> Address: 162 Karatina Gaikuyu Gitunduti Road, Karatina, Kenya. Located about 30 km from the Baden-Powell Museum and roughly a <strong style="color: red;">1.5-hour drive from Nanyuki Airport</strong>. Pet-Friendly: The property is noted for being pet-friendly, allowing cats and dogs free of charge.</p>
+        <div class="services-list">
+          <span class="service-tag">River Views</span>
+          <span class="service-tag">Pool</span>
+          <span class="service-tag">Camping</span>
+          <span class="service-tag">Weddings</span>
+          <span class="service-tag">Events</span>
+          <span class="service-tag">Family-Friendly</span>
+          <span class="service-tag">Free Wi-Fi</span>
+          <span class="service-tag">Parking</span>
+          <span class="service-tag">24/7 Reception</span>
+          <span class="service-tag">Pet-Friendly</span>
+        </div>
+      </div>
+      <div class="info-card scroll-reveal">
+        <h3>Our Services</h3>
+        <ul style="margin-top: 15px; list-style: none; padding-left: 0;">
+          <li>Modern rooms & family cottages from KSh 3,500 B&B</li>
+          <li>Restaurant: local & international cuisine (Whole fish meal KSh 800)</li>
+          <li>Outdoor swimming pool & kids play area</li>
+          <li>Camping site & wedding/conference grounds</li>
+          <li>Free Wi-Fi, parking, 24-hour reception</li>
+        </ul>
+        <p style="margin-top: 20px;"><strong>Kitchen Hours:</strong> 6:00 AM – 10:00 PM</p>
+      </div>
+    </div>
+  </div>
+  <div class="vision-mission">
+    <div class="container">
+      <div class="vm-box scroll-reveal">
+        <h2>Our Vision</h2>
+        <p>To become the leading luxury getaway destination in Kenya, offering unforgettable experiences through nature, comfort, and world-class hospitality.</p>
+      </div>
+      <div class="vm-box scroll-reveal">
+        <h2>Our Mission</h2>
+        <p>To provide exceptional service, serene environments, and memorable stays by combining innovation, culture, and natural beauty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp Float + Toast -->
+<div class="whatsapp-float" id="whatsappFloatBtn">
+  <i class="fab fa-whatsapp"></i>
+</div>
+<div id="toastMsg" class="toast-msg">✓ Action completed</div>
+
+<footer>
+  <div class="footer-area">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="single-footer-caption">
+          <div class="footer-logo">
+            <img src="logo1.png" alt="Logo">
+          </div>
+          <div class="footer-brand">
+            <h3>Aberdare Gardens</h3>
+            <p>EST. 2015</p>
+          </div>
+          <p>Experience luxury and tranquility at the heart of Karatina, Nyeri. Where nature meets elegance.</p>
+        </div>
+        <div class="footer-tittle">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-tittle">
+          <h4>Contact Us</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> <span>Karatina, Nyeri County, Kenya</span></li>
+            <li><i class="fas fa-phone"></i> <span>+254 713 509 985</span></li>
+            <li><i class="fas fa-envelope"></i> <span>aberdaregardens4@gmail.com</span></li>
+          </ul>
+        </div>
+        <div class="footer-tittle">
+          <h4>Visit Us</h4>
+          <div class="opening-hours">
+            <p><span class="day">Mon - Fri:</span> <span>7:00 AM - 12:00 PM</span></p>
+            <p><span class="day">Sat - Sun:</span> <span>8:00 AM - 11:00 PM</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <div class="footer-social">
+        <span>Follow Us:</span>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="footer-copy-right">
+        <p>&copy; 2025 Aberdare Gardens | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Helper functions
+  function sendWhatsApp(url) { window.open(url, '_blank'); }
+  function showToast(msg) { 
+    const toast = document.getElementById("toastMsg"); 
+    toast.innerText = msg; 
+    toast.style.opacity = "1"; 
+    setTimeout(() => toast.style.opacity = "0", 2800); 
+  }
+
+  // WhatsApp float
+  document.getElementById("whatsappFloatBtn")?.addEventListener("click", () => {
+    sendWhatsApp("https://wa.me/254713509985?text=Hello%20Aberdare%20Gardens%2C%20I'd%20like%20to%20inquire%20about%20accommodation%20or%20events.");
+  });
+
+  // Mobile sidebar
+  const mobileSidebar = document.getElementById("mobileSidebar");
+  const overlaySide = document.getElementById("sidebarOverlay");
+  document.getElementById("mobileMenuBtn")?.addEventListener("click", () => {
+    mobileSidebar.classList.add("open");
+    overlaySide.classList.add("active");
+  });
+  document.getElementById("closeSidebarBtn")?.addEventListener("click", () => {
+    mobileSidebar.classList.remove("open");
+    overlaySide.classList.remove("active");
+  });
+  overlaySide?.addEventListener("click", () => {
+    mobileSidebar.classList.remove("open");
+    overlaySide.classList.remove("active");
+  });
+
+  // Slider auto
+  let slides = document.querySelectorAll(".slide");
+  let current = 0;
+  function showNextSlide() {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }
+  setInterval(showNextSlide, 4500);
+
+  // Scroll reveal Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+ // Preloader - Faster Version
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+
+  preloader.style.transition = "opacity 0.2s ease";
+  preloader.style.opacity = "0";
+
+  setTimeout(() => {
+    preloader.style.display = "none";
+  }, 200);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Aberdare Gardens - Premium Bar & Group Order</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #fcf8ef;
+            color: #2c2418;
+            scroll-behavior: smooth;
+        }
+
+        /* Elegant bar-inspired theme */
+        :root {
+            --gold: #c9a03d;
+            --dark-green: #1a3a2c;
+            --warm-bg: #fef7e8;
+            --accent-amber: #b87333;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #107500;
+            z-index: 1000;
+            padding: 0.7rem 0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            border-bottom: 2px solid var(--gold);
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+      .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+        .brand img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+        }
+        .logo-text {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+        }
+        .logo-text span {
+            font-weight: 400;
+            color: #e9e2cf;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #fef3e2;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links li a:hover { color: var(--gold); }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #fef3e2;
+            cursor: pointer;
+        }
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: #048600;
+            box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+            z-index: 1100;
+            padding: 2rem 1.5rem;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .mobile-sidebar.open { right: 0; }
+        .close-sidebar {
+    align-self: flex-end;
+    background: red;
+    border: none;
+    border-radius: 10px;
+      height: 30px;
+            width: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff; /* already white */
+}
+        
+        .mobile-sidebar a {
+            color: #f3e9ce;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(201,160,61,0.3);
+        }
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1050;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .sidebar-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .footer-social {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+        }
+        .footer-social a {
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+
+        /* FLOATING CART BUTTON - premium */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #b87333;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1050;
+            transition: all 0.25s ease;
+            border: 2px solid var(--gold);
+        }
+        .floating-cart:hover {
+            transform: scale(1.08);
+            background: #9b5e2c;
+        }
+        .floating-cart i {
+            font-size: 2rem;
+            color: white;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e67e22;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            border: 2px solid #fef7e8;
+        }
+
+        /* Menu header & category vibes */
+        #menu {
+            padding: 4rem 0 5rem;
+        }
+        h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #1f3d2c;
+            letter-spacing: -0.3px;
+            margin-bottom: 1rem;
+        }
+        .bar-subhead {
+            text-align: center;
+            font-size: 1rem;
+            color: #a47c48;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+        
+        /* SEARCH + FILTER - refined */
+        .search-filter-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .search-wrapper {
+            flex: 1;
+            max-width: 480px;
+            position: relative;
+            background: white;
+            border-radius: 60px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            padding: 0.2rem 0.2rem 0.2rem 1.5rem;
+            transition: all 0.2s;
+            border: 1px solid #e2d6c4;
+        }
+        .search-wrapper:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201,160,61,0.2);
+        }
+        .search-wrapper i.fa-search {
+            color: #a47c48;
+            font-size: 1.1rem;
+        }
+        .search-wrapper input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            padding: 0.9rem 0;
+            background: transparent;
+            font-family: inherit;
+        }
+        .filter-trigger {
+            background: #1a3a2c;
+            border: none;
+            border-radius: 50px;
+            width: 48px;
+            height: 48px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-left: 6px;
+        }
+        .filter-trigger:hover { background: var(--gold); transform: scale(0.96);}
+        .filter-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: white;
+            min-width: 240px;
+            border-radius: 28px;
+            box-shadow: 0 18px 34px rgba(0,0,0,0.2);
+            overflow: hidden;
+            z-index: 200;
+            display: none;
+            border: 1px solid #ecdbaa;
+        }
+        .filter-dropdown.active { display: block; }
+        .filter-option {
+            padding: 0.85rem 1.3rem;
+            cursor: pointer;
+            transition: 0.15s;
+            font-weight: 500;
+            border-bottom: 1px solid #f0e6d8;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        .filter-option:last-child { border-bottom: none; }
+        .filter-option:hover { background: #fdf4e3; color: #a44c1a; }
+        .filter-option.active-filter {
+            background: #2c5a3a;
+            color: white;
+        }
+
+        /* Card grid - 4 desktop, 2 mobile */
+        .card-grid {
+            display: grid;
+            gap: 1.8rem;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 767px) {
+            .card-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .card-grid { gap: 0.9rem; }
+        }
+        
+        .menu-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            backdrop-filter: blur(0px);
+        }
+        .menu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.12); }
+        .img-placeholder { width: 100%; aspect-ratio: 4 / 3; background-size: cover; background-position: center; background-color: #e9dfcf; }
+        .card-content { padding: 1rem; flex-grow: 1; }
+        .card-content h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; color: #2c4a30; }
+        .card-content p { color: #7b6b52; font-size: 0.8rem; margin: 0.3rem 0; line-height: 1.3; }
+        .order-group-btn {
+            background: #1e3b2c;
+            color: white;
+            border: none;
+            padding: 0.65rem 0;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.7rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+        .order-group-btn:hover { background: #b87333; color: white; }
+        .selected-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #e67e22;
+            color: white;
+            border-radius: 40px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 2px 6px black(0,0,0,0.2);
+        }
+        .category-badge {
+            background: #d4af37;
+            color: #1e3b2c;
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-bottom: 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #fffcf5;
+            padding: 2rem;
+            border-radius: 36px;
+            max-width: 580px;
+            width: 90%;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid var(--gold);
+        }
+        .close-modal {
+            position: absolute;
+            right: 1.3rem;
+            top: 1rem;
+            font-size: 1.6rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #6b4c2c;
+        }
+        .cart-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #efe2cf; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .qty-btn { background: #e6dccc; border: none; width: 34px; height: 34px; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.1s; }
+        .qty-btn:hover { background: #b87333; color: white; }
+        .remove-item { background: #c96b3b; color: white; border: none; border-radius: 30px; padding: 0.3rem 0.9rem; cursor: pointer; font-size: 0.7rem; }
+        .cart-total { margin-top: 1rem; font-weight: bold; text-align: right; font-size: 1.1rem; padding-top: 0.8rem; border-top: 2px dashed #cfbc9a; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.8rem; border-radius: 32px; border: 1px solid #decbae; background: white; font-family: inherit; }
+        .btn { background: #1e3b2c; color: white; padding: 0.8rem; border: none; border-radius: 60px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn:hover { background: #b87333; color: white; }
+        .scroll-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
+        #toastMsg {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f3d2c;
+            color: #f5c542;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 2100;
+            pointer-events: none;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .container { padding: 0 1.2rem; }
+            .floating-cart { width: 56px; height: 56px; bottom: 20px; right: 20px; }
+            #toastMsg { bottom: 100px; white-space: normal; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="brand">
+    <img src="logo1.png" alt="Aberdare Gardens Logo">
+    <div class="logo-text">
+        Aberdare <span>Gardens</span>
+    </div>
+</a>
+    <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="rooms.html">Rooms</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+  </div>
+</nav>
+
+<div class="mobile-sidebar" id="mobileSidebar">
+  <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+  <div class="brand"><img src="logo1.png" alt="Aberdare Gardens"><div class="logo-text">Aberdare <span>Gardens</span></div></div>
+  <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="rooms.html">Rooms</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+  <div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<section id="menu">
+  <div class="container">
+    <h2> The Aberdare Bar & Kitchen</h2>
+    <div class="bar-subhead">✨ Premium spirits • Kenyan craft • Group feasts ✨</div>
+    <div class="search-filter-row">
+      <div class="search-wrapper">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search spirits, beers, cocktails...">
+        <button class="filter-trigger" id="filterTriggerBtn"><i class="fas fa-sliders-h"></i></button>
+      </div>
+      <div class="filter-dropdown" id="filterDropdown">
+        <div class="filter-option active-filter" data-filter="all">🍷 All Bar Delights</div>
+        <div class="filter-option" data-filter="Whisky">🥃 Whisky & Scotch</div>
+        <div class="filter-option" data-filter="Vodka">🍸 Vodka</div>
+        <div class="filter-option" data-filter="Rum & Liqueur">🍹 Rum / Liqueur</div>
+        <div class="filter-option" data-filter="Gin & Brandy">🍾 Gin & Brandy</div>
+        <div class="filter-option" data-filter="Wine & Champagne">🍷 Wine & Sparkling</div>
+        <div class="filter-option" data-filter="Cigars & Spirits">🚬 Cigars & Premium</div>
+        <div class="filter-option" data-filter="Cocktails & Mixers">🍹 Signature Mix</div>
+        <div class="filter-option" data-filter="Local & Kenyan Brews">🍺 Kenyan Brews</div>
+        <div class="filter-option" data-filter="Soft Drinks & Refreshments">🥤 Soft Drinks</div>
+      </div>
+    </div>
+    <div class="card-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<div class="floating-cart" id="floatingCartBtn">
+  <i class="fas fa-shopping-basket"></i>
+  <span class="cart-badge" id="floatingCartBadge">0</span>
+</div>
+
+<!-- Cart & Order modals -->
+<div id="cartModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="cartModal">&times;</button><h3><i class="fas fa-users"></i>  Cart · Share the Experience</h3><div id="cartItemsList" style="max-height: 340px; overflow-y: auto; margin: 1rem 0;"></div><div class="cart-total" id="cartTotalMsg"></div><button id="proceedToGroupCheckout" class="btn" style="margin-top: 1rem;"> Proceed to  Order</button></div></div>
+<div id="orderModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="orderModal">&times;</button><h3>👥 Group Order · Bar Tray & Dining</h3><form id="orderForm"><div class="form-group"><input type="text" id="orderName" placeholder="Contact Person Name" required></div><div class="form-group"><input type="tel" id="orderPhone" placeholder="Phone Number" required></div><div class="form-group"><input type="number" id="numPeople" placeholder="Number of people (e.g., 6)" min="1" required></div><div class="form-group"><textarea rows="4" id="orderItemsSummary" placeholder="Order summary will appear here" readonly style="background:#f9f1e2;"></textarea></div><div class="form-group"><textarea rows="2" id="orderNote" placeholder="Special requests (ice, glasses, allergies, mixers...)"></textarea></div><button type="submit" class="btn">🚀Send Group Order </button></form></div></div>
+
+<!-- Helper modals -->
+<div id="bookingModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="bookingModal">&times;</button><h3>🏨 Reserve Stay</h3><form id="bookingForm"><div class="form-group"><input type="text" id="bookName" placeholder="Full Name" required></div><div class="form-group"><input type="tel" id="bookPhone" placeholder="Phone" required></div><div class="form-group"><input type="email" id="bookEmail" placeholder="Email"></div><div class="form-group"><input type="date" id="checkin" required></div><div class="form-group"><input type="date" id="checkout" required></div><div class="form-group"><select id="roomType"><option>Standard Room</option><option>Deluxe Suite</option><option>Family Cottage</option></select></div><div class="form-group"><input type="number" id="guests" placeholder="Guests" required></div><button type="submit" class="btn">Send Inquiry</button></form></div></div>
+<div id="contactModal" class="modal"><div class="modal-content"><button class="close-modal" data-modal="contactModal">&times;</button><h3>📞 Contact Concierge</h3><form id="contactFormModal"><div class="form-group"><input type="text" id="contactNameModal" placeholder="Your Name" required></div><div class="form-group"><input type="email" id="contactEmailModal" placeholder="Email"></div><div class="form-group"><textarea rows="3" id="contactMsgModal" placeholder="Message..."></textarea></div><button type="submit" class="btn">Send </button></form></div></div>
+<div id="toastMsg"></div>
+
+<script>
+  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // COMPLETE BAR MENU from handwritten notes + additional items
+  // categories based on your list: Whisky, Vodka, Rum/Liqueur, Gin/Brandy, Wine, Cigars, Cocktails, Kenyan Brews, Soft Drinks
+  const menuItems = [
+    // WHISKY / SCOTCH
+    { id:1, name:"Johnnie Walker Black Label", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Iconic smoky blend, 12 years" },
+    { id:2, name:"Johnnie Walker Red Label", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Bold & versatile" },
+    { id:3, name:"Chivas Regal 12", category:"Whisky", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Smooth & honeyed luxury" },
+    { id:4, name:"Black & White", category:"Whisky", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Classic blended scotch" },
+    { id:5, name:"Jameson Irish Whiskey", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Triple distilled, smooth" },
+    { id:6, name:"Jack Daniel's Honey", category:"Whisky", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Tennessee honey liqueur" },
+    { id:7, name:"Jack Daniel's Old No.7", category:"Whisky", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Charcoal mellowed" },
+    { id:8, name:"Glenfiddich 12", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Single malt, pear notes" },
+    { id:9, name:"Grant's Whisky", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Family reserve" },
+    { id:10, name:"Famous Grouse", category:"Whisky", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Smooth & rich" },
+    { id:11, name:"Green Label (JW)", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Pure malt blend" },
+    { id:12, name:"Double Black (JW)", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Intensely smoky" },
+    { id:13, name:"Vat 69", category:"Whisky", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Old classic blend" },
+    { id:14, name:"William Lawson's", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Scottish blend" },
+    { id:15, name:"Singleton", category:"Whisky", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Smooth single malt" },
+    // VODKA
+    { id:16, name:"Smirnoff Vodka (1L)", category:"Vodka", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Crisp & versatile" },
+    { id:17, name:"KC Vodka (½ & mzinga)", category:"Vodka", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Kenyan classic" },
+    { id:18, name:"Opium Vodka", category:"Vodka", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Premium smooth" },
+    // RUM & LIQUEUR
+    { id:19, name:"Captain Morgan (Spiced)", category:"Rum & Liqueur", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Caribbean gold" },
+    { id:20, name:"Jägermeister 700ml", category:"Rum & Liqueur", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Herbal digestif" },
+    { id:21, name:"Malibu Coconut Rum", category:"Rum & Liqueur", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Tropical sweetness" },
+    { id:22, name:"Southern Comfort", category:"Rum & Liqueur", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Spiced fruit liqueur" },
+    // GIN & BRANDY
+    { id:23, name:"Tanqueray Gin", category:"Gin & Brandy", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"London dry, crisp" },
+    { id:24, name:"Tanqueray Ten", category:"Gin & Brandy", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Premium citrus forward" },
+    { id:25, name:"Gilbey's Gin", category:"Gin & Brandy", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Classic dry" },
+    { id:26, name:"Viceroy Brandy (½ & 750ml)", category:"Gin & Brandy", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Smooth brandy" },
+    { id:27, name:"Richot Brandy (½ & 750ml)", category:"Gin & Brandy", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Aged elegance" },
+    { id:28, name:"Bond Brandy", category:"Gin & Brandy", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Deep oak notes" },
+    // WINE & CHAMPAGNE
+    { id:29, name:"Cellar Cask Red", category:"Wine & Champagne", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Smooth table wine" },
+    { id:30, name:"d'rosta Sauvignon", category:"Wine & Champagne", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Crisp white" },
+    { id:31, name:"4th Street (Sweet)", category:"Wine & Champagne", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Fruity bubbly" },
+    // CIGARS & PREMIUM
+    { id:32, name:"Dunhill Cigar", category:"Cigars & Spirits", img:"https://images.pexels.com/photos/277997/pexels-photo-277997.jpeg", desc:"Premium hand-rolled" },
+    { id:33, name:"Embassy Cigar", category:"Cigars & Spirits", img:"https://images.pexels.com/photos/277997/pexels-photo-277997.jpeg", desc:"Smooth aromatic" },
+    { id:34, name:"Hennessy VS", category:"Cigars & Spirits", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Cognac excellence" },
+    // COCKTAILS & MIXERS
+    { id:35, name:"Dawa Cocktail", category:"Cocktails & Mixers", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Vodka, honey, lime, chili" },
+    { id:36, name:"Pink Licodori", category:"Cocktails & Mixers", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Creamy pink liqueur" },
+    { id:37, name:"Lemonade & Mint Julep", category:"Cocktails & Mixers", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Refreshing mocktail" },
+    { id:38, name:"Damonte Limoncello", category:"Cocktails & Mixers", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Italian lemon spirit" },
+    // KENYAN BREWS
+    { id:39, name:"Tusker Lager", category:"Local & Kenyan Brews", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Kenya's pride" },
+    { id:40, name:"Tusker Malt", category:"Local & Kenyan Brews", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Premium lager" },
+    { id:41, name:"White Cap Lager", category:"Local & Kenyan Brews", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Crisp & easy" },
+    { id:42, name:"Kerrow Gold Cider", category:"Local & Kenyan Brews", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Apple cider" },
+    { id:43, name:"Savanna Dry", category:"Local & Kenyan Brews", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Premium cider" },
+    // SOFT DRINKS
+    { id:44, name:"Fresh Juice (Mango/Passion)", category:"Soft Drinks & Refreshments", img:"https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg", desc:"Cold pressed" },
+    { id:45, name:"Kenyan Coffee (AA)", category:"Soft Drinks & Refreshments", img:"https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg", desc:"Rich & aromatic" },
+    { id:46, name:"Soda Selection", category:"Soft Drinks & Refreshments", img:"https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg", desc:"Coke, Sprite, Fanta" }
+  ];
+  
+  let cart = [];
+  let activeFilter = "all";
+  let searchQuery = "";
+
+  function updateCartBadgeAndStorage() {
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("floatingCartBadge").innerText = totalQty;
+    localStorage.setItem("aberGroupCart", JSON.stringify(cart));
+    renderMenu();
+    if(document.getElementById("cartModal").classList.contains("active")) renderCartModal();
+  }
+
+  function renderCartModal() {
+    const container = document.getElementById("cartItemsList");
+    if(!container) return;
+    if(cart.length === 0) { container.innerHTML = "<p style='text-align:center; padding:1rem;'>The cart empty — add signature drinks </p>"; document.getElementById("cartTotalMsg").innerHTML = "Total servings: 0"; return; }
+    let html = "";
+    cart.forEach((item, idx) => {
+      html += `<div class="cart-item"><div class="cart-item-details"><strong>${escapeHtml(item.name)}</strong></div><div class="cart-item-qty"><button class="qty-btn" data-idx="${idx}" data-delta="-1">-</button><span style="min-width:35px;text-align:center;">${item.quantity}</span><button class="qty-btn" data-idx="${idx}" data-delta="+1">+</button><button class="remove-item" data-idx="${idx}"><i class="fas fa-trash"></i></button></div></div>`;
+    });
+    container.innerHTML = html;
+    const total = cart.reduce((s,i)=> s + i.quantity, 0);
+    document.getElementById("cartTotalMsg").innerHTML = ` Total  (bottles/shots): ${total}`;
+    document.querySelectorAll(".qty-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idx = parseInt(btn.getAttribute("data-idx"));
+        const delta = parseInt(btn.getAttribute("data-delta"));
+        if(cart[idx]) {
+          let newQty = cart[idx].quantity + delta;
+          if(newQty <= 0) cart.splice(idx,1);
+          else cart[idx].quantity = newQty;
+          updateCartBadgeAndStorage();
+          renderCartModal();
+        }
+      });
+    });
+    document.querySelectorAll(".remove-item").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idx = parseInt(btn.getAttribute("data-idx"));
+        cart.splice(idx,1);
+        updateCartBadgeAndStorage();
+        renderCartModal();
+      });
+    });
+  }
+
+  function addOrUpdateCart(itemId, itemName) {
+    const existing = cart.find(i => i.id === itemId);
+    if(existing) { existing.quantity += 1; showToast(`➕ ${itemName} ×${existing.quantity} for group`); }
+    else { cart.push({ id: itemId, name: itemName, quantity: 1 }); showToast(` ${itemName} added (group tray)`); }
+    updateCartBadgeAndStorage();
+  }
+
+  function renderMenu() {
+    let filtered = menuItems.filter(item => activeFilter === "all" ? true : item.category === activeFilter);
+    if(searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(item => item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q));
+    }
+    const grid = document.getElementById("menuGrid");
+    grid.innerHTML = filtered.map(item => {
+      const cartItem = cart.find(c => c.id === item.id);
+      const badge = cartItem ? `<span class="selected-badge">${cartItem.quantity} x cart</span>` : '';
+      return `<div class="menu-card scroll-reveal">
+                ${badge}
+                <div class="img-placeholder" style="background-image: url('${item.img}');"></div>
+                <div class="card-content">
+                  <span class="category-badge">${item.category}</span>
+                  <h3>${item.name}</h3>
+                  <p>${item.desc}</p>
+                  <button class="order-group-btn" data-id="${item.id}" data-name="${item.name}"><i class="fas fa-users"></i> Add to cart</button>
+                </div>
+              </div>`;
+    }).join('');
+    document.querySelectorAll('.order-group-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = parseInt(btn.getAttribute("data-id"));
+        const name = btn.getAttribute("data-name");
+        addOrUpdateCart(id, name);
+      });
+    });
+    triggerReveal();
+  }
+
+  function openGroupCheckout() {
+    if(cart.length === 0) { showToast("Please add bar items to  cart first!"); return; }
+    let summary = "🍻 BAR ORDER 🍻\n\n";
+    cart.forEach(item => { summary += `• ${item.name} x ${item.quantity} serving(s)\n`; });
+    summary += `\nTotal servings: ${cart.reduce((s,i)=> s+i.quantity,0)}`;
+    document.getElementById("orderItemsSummary").value = summary;
+    document.getElementById("orderModal").classList.add("active");
+    document.getElementById("cartModal").classList.remove("active");
+  }
+
+  function sendWhatsApp(url) { window.open(url, '_blank'); }
+  function showToast(msg) { const t = document.getElementById("toastMsg"); t.innerText = msg; t.style.opacity = "1"; setTimeout(()=> t.style.opacity = "0", 2500); }
+  function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]; }); }
+  function triggerReveal(){ document.querySelectorAll('.scroll-reveal').forEach(el=>{ if(el.getBoundingClientRect().top<window.innerHeight-100) el.classList.add('revealed'); }); }
+
+  // Filter logic + dropdown
+  const filterBtn = document.getElementById("filterTriggerBtn");
+  const filterDropdown = document.getElementById("filterDropdown");
+  const filterOptions = document.querySelectorAll(".filter-option");
+  const searchInput = document.getElementById("searchInput");
+  filterBtn.addEventListener("click", (e) => { e.stopPropagation(); filterDropdown.classList.toggle("active"); });
+  document.addEventListener("click", (e) => { if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) filterDropdown.classList.remove("active"); });
+  filterOptions.forEach(opt => {
+    opt.addEventListener("click", () => {
+      activeFilter = opt.getAttribute("data-filter");
+      filterOptions.forEach(o => o.classList.remove("active-filter"));
+      opt.classList.add("active-filter");
+      filterDropdown.classList.remove("active");
+      renderMenu();
+    });
+  });
+  searchInput.addEventListener("input", (e) => { searchQuery = e.target.value; renderMenu(); });
+
+  document.getElementById("orderForm")?.addEventListener("submit",(e)=>{ e.preventDefault(); let name=document.getElementById("orderName").value, phone=document.getElementById("orderPhone").value, people=document.getElementById("numPeople").value, summary=document.getElementById("orderItemsSummary").value, note=document.getElementById("orderNote").value; let msg=`🍾 *GROUP ORDER - ABERDARE BAR*%0A👤 ${name}%0A📞 ${phone}%0A👥 ${people} pax%0A📋 ${summary.replace(/\n/g, '%0A')}%0A📝 ${note}%0A📍 Ready for collection/table service.`; sendWhatsApp(`https://wa.me/254713509985?text=${msg}`); showToast("✅ Group order sent to Aberdare!"); cart=[]; updateCartBadgeAndStorage(); renderMenu(); e.target.reset(); document.getElementById("orderModal").classList.remove("active"); });
+  document.getElementById("floatingCartBtn")?.addEventListener("click", () => { renderCartModal(); document.getElementById("cartModal").classList.add("active"); });
+  document.getElementById("proceedToGroupCheckout")?.addEventListener("click", openGroupCheckout);
+  const saved = localStorage.getItem("aberGroupCart"); if(saved) { try{ cart=JSON.parse(saved); updateCartBadgeAndStorage(); }catch(e){} }
+  // modal handlers
+  document.querySelectorAll(".close-modal").forEach(btn=>{ btn.addEventListener("click",()=>{ document.getElementById(btn.getAttribute("data-modal")).classList.remove("active"); }); });
+  window.addEventListener("click",(e)=>{ if(e.target.classList.contains("modal")) e.target.classList.remove("active"); });
+  document.getElementById("bookingForm")?.addEventListener("submit",(e)=>{ e.preventDefault(); let msg= ` Booking: ${document.getElementById("bookName").value} ${document.getElementById("bookPhone").value}`; sendWhatsApp(`https://wa.me/254713509985?text=${msg}`); showToast("inquiry sent"); document.getElementById("bookingModal").classList.remove("active"); });
+  document.getElementById("contactFormModal")?.addEventListener("submit",(e)=>{ e.preventDefault(); let msg= `📞 ${document.getElementById("contactNameModal").value}: ${document.getElementById("contactMsgModal").value}`; sendWhatsApp(`https://wa.me/254713509985?text=${msg}`); showToast("message sent"); document.getElementById("contactModal").classList.remove("active"); });
+  
+  window.addEventListener("load",()=>{ renderMenu(); updateCartBadgeAndStorage(); window.addEventListener("scroll", triggerReveal); triggerReveal(); });
+  // Mobile sidebar
+ const mobBtn=document.getElementById("mobileMenuBtn"), mobSide=document.getElementById("mobileSidebar"), overlay=document.getElementById("sidebarOverlay");
+  mobBtn?.addEventListener("click",()=>{ mobSide.classList.add("open"); overlay.classList.add("active"); });
+  document.getElementById("closeSidebarBtn")?.addEventListener("click",()=>{ mobSide.classList.remove("open"); overlay.classList.remove("active"); });
+  overlay?.addEventListener("click",()=>{ mobSide.classList.remove("open"); overlay.classList.remove("active"); });
+</script>
+</body>
+</html>
