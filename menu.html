@@ -526,46 +526,62 @@
 <div id="toastMsg"></div>
 
 <script>
-  // ---------- MENU DATA (full list, includes all categories) ----------
-  const menuItems = [
-    { id:1, name:"Ugali & Sukuma Wiki", category:"Local Dishes", img:"https://images.pexels.com/photos/723198/pexels-photo-723198.jpeg", desc:"Classic Kenyan comfort meal" },
-    { id:2, name:"Githeri Special", category:"Local Dishes", img:"https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg", desc:"Beans & maize simmered" },
-    { id:3, name:"Mukimo & Beef Stew", category:"Local Dishes", img:"https://images.pexels.com/photos/3026806/pexels-photo-3026806.jpeg", desc:"Mashed greens & beef" },
-    { id:4, name:"Pilau Beef", category:"Local Dishes", img:"https://images.pexels.com/photos/1618889/pexels-photo-1618889.jpeg", desc:"Spiced rice & beef" },
-    { id:5, name:"Chapati & Bean Stew", category:"Local Dishes", img:"https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", desc:"Soft chapati" },
-    { id:6, name:"Nyama Choma (Goat)", category:"Nyama Choma", img:"https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg", desc:"Smoky roasted goat" },
-    { id:7, name:"Grilled Chicken (Kuku Choma)", category:"Nyama Choma", img:"https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg", desc:"Half chicken grilled" },
-    { id:8, name:"Beef Ribs", category:"Nyama Choma", img:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", desc:"Juicy ribs" },
-    { id:9, name:"Pork Choma", category:"Nyama Choma", img:"https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg", desc:"Crispy pork bites" },
-    { id:10, name:"Fried Tilapia", category:"Seafood", img:"https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg", desc:"Whole fried fish" },
-    { id:11, name:"Fish Coconut Curry", category:"Seafood", img:"https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg", desc:"Coastal style curry" },
-    { id:12, name:"Grilled Prawns", category:"Seafood", img:"https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", desc:"Garlic butter prawns" },
-    { id:13, name:"Chips Masala", category:"Fast Food", img:"https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg", desc:"Spiced fries" },
-    { id:14, name:"Burger & Fries", category:"Fast Food", img:"https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg", desc:"Beef/chicken burger" },
-    { id:15, name:"Hot Dog", category:"Fast Food", img:"https://images.pexels.com/photos/4518656/pexels-photo-4518656.jpeg", desc:"Loaded hot dog" },
-    { id:16, name:"Pizza Slice", category:"Fast Food", img:"https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg", desc:"Cheese slice" },
-    { id:17, name:"Mandazi & Chai", category:"Breakfast", img:"https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", desc:"Fresh mandazi" },
-    { id:18, name:"Full Kenyan Breakfast", category:"Breakfast", img:"https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg", desc:"Eggs, sausage, toast" },
-    { id:19, name:"Pancakes", category:"Breakfast", img:"https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", desc:"With syrup" },
-    { id:20, name:"Omelette & Toast", category:"Breakfast", img:"https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg", desc:"Egg delight" },
-    { id:21, name:"Fresh Juice", category:"Drinks (Non-Alc)", img:"https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg", desc:"Mango/passion" },
-    { id:22, name:"Dawa Mocktail", category:"Drinks (Non-Alc)", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Honey, lime, ginger" },
-    { id:23, name:"Soda", category:"Drinks (Non-Alc)", img:"https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg", desc:"Chilled soda" },
-    { id:24, name:"Kenyan Coffee", category:"Drinks (Non-Alc)", img:"https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg", desc:"Rich arabica" },
-    { id:25, name:"Tusker Lager", category:"Kenyan Bar", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Kenya's iconic lager" },
-    { id:26, name:"Tusker Malt", category:"Kenyan Bar", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Full-bodied malt" },
-    { id:27, name:"White Cap Lager", category:"Kenyan Bar", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Smooth light lager" },
-    { id:28, name:"Kerrow Gold Cider", category:"Kenyan Bar", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Crisp apple cider" },
-    { id:29, name:"Captain Morgan & Cola", category:"Kenyan Bar", img:"https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg", desc:"Spiced rum mix" },
-    { id:30, name:"Johnnie Walker Black", category:"Kenyan Bar", img:"https://images.pexels.com/photos/1267689/pexels-photo-1267689.jpeg", desc:"Whisky neat/rocks" },
-    { id:31, name:"Kenyan Gin & Tonic", category:"Kenyan Bar", img:"https://images.pexels.com/photos/2086718/pexels-photo-2086718.jpeg", desc:"Procera gin + tonic" },
-    { id:32, name:"Savanna Dry", category:"Kenyan Bar", img:"https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg", desc:"Premium cider" },
-    { id:33, name:"Dawa Cocktail", category:"Kenyan Bar", img:"https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg", desc:"Vodka, honey, lime, chili" },
-    { id:34, name:"African Honey Beer", category:"Kenyan Bar", img:"https://images.pexels.com/photos/169340/pexels-photo-169340.jpeg", desc:"Honey-infused brew" },
-    { id:35, name:"Chef's Nyama Platter", category:"Specials", img:"https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg", desc:"Assorted grilled meats" },
-    { id:36, name:"Family BBQ Combo", category:"Specials", img:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", desc:"Feeds 4-5 people" }
-  ];
+ // ---------- MENU DATA (arranged from image14 onwards) ----------
+const menuItems = [
 
+    { id:1, name:"Chapati & Bean Stew", category:"Local Dishes", img:"images/14.jpg", desc:"Soft chapati" },
+
+    { id:2, name:"Pilau Beef", category:"Local Dishes", img:"images/15.jpg", desc:"Spiced rice & beef" },
+
+    { id:3, name:"Githeri Special", category:"Local Dishes", img:"images/16.jpg", desc:"Beans & maize simmered" },
+
+    { id:4, name:"Beef Ribs", category:"Nyama Choma", img:"images/17.jpg", desc:"Juicy ribs" },
+
+    { id:5, name:"Ugali & Sukuma Wiki", category:"Local Dishes", img:"images/18.jpg", desc:"Classic Kenyan comfort meal" },
+
+    { id:6, name:"Mukimo & Beef Stew", category:"Local Dishes", img:"images/19.jpg", desc:"Mashed greens & beef" },
+
+    { id:7, name:"Nyama Choma (Goat)", category:"Nyama Choma", img:"images/20.jpg", desc:"Smoky roasted goat" },
+
+    { id:8, name:"Grilled Chicken (Kuku Choma)", category:"Nyama Choma", img:"images/21.jpg", desc:"Half chicken grilled" },
+
+    { id:9, name:"Pork Choma", category:"Nyama Choma", img:"images/22.jpg", desc:"Crispy pork bites" },
+
+    { id:10, name:"Fried Tilapia", category:"Seafood", img:"images/23.jpg", desc:"Whole fried fish" },
+
+    { id:11, name:"Fish Coconut Curry", category:"Seafood", img:"images/24.jpg", desc:"Coastal style curry" },
+
+    { id:12, name:"Grilled Prawns", category:"Seafood", img:"images/25.jpg", desc:"Garlic butter prawns" },
+
+    { id:13, name:"Chips Masala", category:"Fast Food", img:"images/26.jpg", desc:"Spiced fries" },
+
+    { id:14, name:"Burger & Fries", category:"Fast Food", img:"images/27.jpg", desc:"Beef/chicken burger" },
+
+    { id:15, name:"Hot Dog", category:"Fast Food", img:"images/28.jpg", desc:"Loaded hot dog" },
+
+    { id:16, name:"Pizza Slice", category:"Fast Food", img:"images/29.jpg", desc:"Cheese slice" },
+
+    { id:17, name:"Mandazi & Chai", category:"Breakfast", img:"images/30.jpg", desc:"Fresh mandazi" },
+
+    { id:18, name:"Full Kenyan Breakfast", category:"Breakfast", img:"images/31.jpg", desc:"Eggs, sausage, toast" },
+
+    { id:19, name:"Pancakes", category:"Breakfast", img:"images/32.jpg", desc:"With syrup" },
+
+    { id:20, name:"Omelette & Toast", category:"Breakfast", img:"images/33.jpg", desc:"Egg delight" },
+
+    { id:21, name:"Fresh Juice", category:"Drinks (Non-Alc)", img:"images/34.jpg", desc:"Mango/passion" },
+
+    { id:22, name:"Dawa Mocktail", category:"Drinks (Non-Alc)", img:"images/35.jpg", desc:"Honey, lime, ginger" },
+
+    { id:23, name:"Soda", category:"Drinks (Non-Alc)", img:"images/36.jpg", desc:"Chilled soda" },
+
+    { id:24, name:"Kenyan Coffee", category:"Drinks (Non-Alc)", img:"images/37.jpg", desc:"Rich arabica" },
+
+   
+    { id:35, name:"Chef's Nyama Platter", category:"Specials", img:"images/48.jpg", desc:"Assorted grilled meats" },
+
+    { id:36, name:"Family BBQ Combo", category:"Specials", img:"images/49.jpg", desc:"Feeds 4-5 people" }
+];
   let cart = []; // { id, name, quantity }
   let activeFilter = "all";
   let searchQuery = "";
