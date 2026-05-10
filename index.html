@@ -74,11 +74,6 @@
       color: #2C5F2D;
       letter-spacing: 1px;
     }
-    @keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
     /* ---------- NAVBAR ---------- */
     .navbar {
@@ -108,7 +103,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #D4AF37;
-            background: #f3e5c0; /* placeholder bg while loading */
+            background: #f3e5c0;
        
     }
     .logo-text {
@@ -251,6 +246,38 @@
     }
     .slide-text p {
       font-size: 1.2rem;
+    }
+
+    /* ---------- STATS SECTION (NEW) ---------- */
+    .stats-section {
+      padding: 60px 0;
+      background: #1A2A1A;
+      color: white;
+      text-align: center;
+    }
+    .stats-grid {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 150px;
+    }
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      color: #D4AF37;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      font-weight: 500;
     }
 
     /* ---------- ABOUT SECTION ---------- */
@@ -491,6 +518,14 @@
       transform: translateY(0);
     }
 
+    /* Parallax Effect (NEW) */
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
     @media (max-width: 850px) {
       .nav-links {
         display: none;
@@ -503,6 +538,9 @@
       }
       h2 {
         font-size: 2rem;
+      }
+      .stat-number {
+        font-size: 2.5rem;
       }
     }
     .transparent-btn{
@@ -763,6 +801,31 @@
   </div>
 
 </section>
+
+<!-- NEW: STATS SECTION (Counter Animation) -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="8">0</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="1500">0</div>
+        <div class="stat-label">Happy Guests (Monthly)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="24">0</div>
+        <div class="stat-label">Luxury Suites</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">5-Star Reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- About Section -->
 <section id="about">
   <div class="container">
@@ -1031,6 +1094,37 @@ window.addEventListener("load", () => {
     preloader.style.display = "none";
   }, 200);
 });
+
+// NEW: Counter Animation for Stats
+function animateCounters() {
+  const counters = document.querySelectorAll('.stat-number');
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const current = parseInt(counter.innerText);
+      const increment = target / 50; // Adjust speed here
+      if (current < target) {
+        counter.innerText = Math.ceil(current + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+}
+
+// Trigger counters when stats section is in view
+const statsSection = document.querySelector('.stats-section');
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+if (statsSection) statsObserver.observe(statsSection);
 </script>
 </body>
 </html>
