@@ -478,6 +478,8 @@
             <li><a href="events.html">Events</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
+                        <li><a href="careers.html" style="color:#ffdd99;">Careers</a></li>
+
             <li><a href="bar.html">Bar</a></li>
         </ul>
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
@@ -490,13 +492,9 @@
         <img src="logo1.png" alt="logo">
         <div class="logo-text">Aberdare <span>Gardens</span></div>
     </div>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="rooms.html">Rooms</a>
-    <a href="events.html">Events</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact</a>
-    <a href="bar.html">Bar</a>
+    <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="rooms.html">Rooms</a><a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a><a href="bar.html">Bar</a>
+   
 
     
 </div>
@@ -555,20 +553,68 @@
 
 <script>
     // --- UPDATED EVENTS DATA (No prices, hidden price class)
-    const eventsData = [
-        { name: "Wedding Packages", desc: "Lush garden & river views, full catering, elegant decor", img: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Dowry / Ruracio", desc: "Traditional ceremony setup with cultural authenticity", img: "https://images.pexels.com/photos/2101148/pexels-photo-2101148.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Birthday Parties", desc: "Swimming pool access, BBQ packages, custom decorations", img: "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Team Building", desc: "Corporate retreats, outdoor games, conference facilities", img: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Bridal Shower", desc: "Intimate party setups, catering, garden atmosphere", img: "https://images.pexels.com/photos/2101146/pexels-photo-2101146.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Baby Shower", desc: "Joyful celebration with pastel themes and refreshments", img: "https://images.pexels.com/photos/6934760/pexels-photo-6934760.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Pool Parties", desc: "Exclusive poolside event with music & catering", img: "https://images.pexels.com/photos/261395/pexels-photo-261395.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Camping Site", desc: "Night camping under stars, bonfire & nature trails", img: "https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Photoshoot", desc: "Scenic backdrops: gardens, river, resort architecture", img: "https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Corporate Events", desc: "Conferencing, seminars, team lunches with modern AV", img: "https://images.pexels.com/photos/811217/pexels-photo-811217.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Mugithi Nights", desc: "Live Kikuyu mugithi music, dance, and local vibes", img: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { name: "Honeymoon", desc: "Romantic getaway, serene cottages, private dinners", img: "https://images.pexels.com/photos/2507011/pexels-photo-2507011.jpeg?auto=compress&cs=tinysrgb&w=400" }
-    ];
+  const eventsData = [
+    { 
+        name: "Wedding Packages",
+        desc: "Lush garden & river views, full catering, elegant decor",
+        img: "images/wedding.jpeg"
+    },
+
+    { 
+        name: "Dowry / Ruracio",
+        desc: "Traditional ceremony setup with cultural authenticity",
+        img: "images/ruracio.jpeg"
+    },
+
+    { 
+        name: "Birthday Parties",
+        desc: "Swimming pool access, BBQ packages, custom decorations",
+        img: "images/birthday.jpeg"
+    },
+
+    { 
+        name: "Team Building",
+        desc: "Corporate retreats, outdoor games, conference facilities",
+        img: "images/team-building.jpeg"
+    },
+
+   
+    { 
+        name: "Pool Parties",
+        desc: "Exclusive poolside event with music & catering",
+        img: "images/pool-party.jpeg"
+    },
+
+    { 
+        name: "Camping Site",
+        desc: "Night camping under stars, bonfire & nature trails",
+        img: "images/camping.jpeg"
+    },
+
+    { 
+        name: "Photoshoot",
+        desc: "Scenic backdrops: gardens, river, resort architecture",
+        img: "images/photoshoot.jpeg"
+    },
+
+    { 
+        name: "Corporate Events",
+        desc: "Conferencing, seminars, team lunches with modern AV",
+        img: "images/corporate.jpeg"
+    },
+
+    { 
+        name: "Mugithi Nights",
+        desc: "Live Kikuyu mugithi music, dance, and local vibes",
+        img: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=400"
+    },
+
+    { 
+        name: "Honeymoon",
+        desc: "Romantic getaway, serene cottages, private dinners",
+        img: "images/honeymoon.jpeg"
+    }
+];
 
     // additional generic images fallback if needed
     function renderEvents() {

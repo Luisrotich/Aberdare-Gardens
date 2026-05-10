@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Careers | Aberdare Gardens – Train & Grow</title>
+    <!-- Preconnect & optimized font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="logo1.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: #fefaf2;
+            color: #2c2b28;
+            scroll-behavior: smooth;
+        }
+
+        /* NAVBAR (same styling, stays consistent) */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #0a8022;
+            z-index: 1000;
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateZ(0);
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #D4AF37;
+            background: #f3e5c0;
+        }
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffbb00;
+        }
+        .logo-text span {
+            font-weight: 400;
+            color: #fffefc;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #fef3e2;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .nav-links li a:hover { color: #f5c542; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #fef3e2;
+            cursor: pointer;
+        }
+        /* Mobile Sidebar */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: #02801b;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.3);
+            z-index: 1100;
+            padding: 2rem 1.5rem;
+            transition: right 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .mobile-sidebar.open { right: 0; }
+        .close-sidebar {
+            align-self: flex-end;
+            background: #c9302c;
+            border: none;
+            border-radius: 30px;
+            height: 34px;
+            width: 34px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1050;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+        }
+        .sidebar-overlay.active {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+        .footer-social {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            color: #fff;
+        }
+        .footer-social a {
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        /* CAREERS HERO SECTION */
+        .careers-hero {
+            background: linear-gradient(120deg, #1e3c2c 0%, #2a5a3a 100%);
+            padding: 60px 0 48px;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 48px;
+        }
+        .careers-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .careers-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* main cards grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+        }
+        .program-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 24px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            border: 1px solid rgba(180,124,46,0.2);
+            text-align: center;
+        }
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 36px rgba(0,0,0,0.1);
+        }
+        .program-icon {
+            font-size: 3rem;
+            color: #b47c2e;
+            margin-bottom: 18px;
+        }
+        .program-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1e3c2c;
+            margin-bottom: 12px;
+        }
+        .program-card p {
+            color: #5a5a5a;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .badge {
+            background: #1e3c2c;
+            color: white;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .apply-btn {
+            background: #b47c2e;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 60px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+        .apply-btn:hover {
+            background: #1e3c2c;
+            transform: scale(1.02);
+        }
+
+        /* application form modal (comprehensive) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(3px);
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 40px;
+            max-width: 560px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px 28px;
+            position: relative;
+            animation: fadeSlide 0.25s ease;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #1e3c2c;
+        }
+        .modal-content h4 {
+            margin-bottom: 20px;
+            color: #b47c2e;
+            font-weight: 500;
+            border-left: 4px solid #b47c2e;
+            padding-left: 14px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #777;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #2c3e2b;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 60px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+            background: #fefcf7;
+            transition: 0.2s;
+        }
+        .form-group textarea {
+            border-radius: 24px;
+            resize: vertical;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #b47c2e;
+            box-shadow: 0 0 0 3px rgba(180,124,46,0.1);
+        }
+        .double-field {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .upload-hint {
+            font-size: 0.75rem;
+            color: #7f8c5e;
+            margin-top: 5px;
+        }
+        .submit-career-btn {
+            background: #09a204;
+            width: 100%;
+            padding: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 60px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .submit-career-btn:hover {
+            background: #1e6b2f;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e3c2c;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 2100;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+
+        .info-section {
+            background: #e9e2d0;
+            border-radius: 48px;
+            padding: 32px 28px;
+            margin: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: space-between;
+        }
+        .info-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        .info-item i {
+            font-size: 2.2rem;
+            color: #b47c2e;
+            margin-bottom: 12px;
+        }
+        .footer {
+            text-align: center;
+            padding: 32px;
+            background: #1e2a1b;
+            color: #d4d9cf;
+        }
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .careers-hero h1 { font-size: 2.2rem; }
+            .programs-grid { grid-template-columns: 1fr; }
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="brand">
+            <img src="logo1.png" alt="Aberdare Gardens Logo">
+            <div class="logo-text">Aberdare <span>Gardens</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="careers.html" style="color:#ffdd99;">Careers</a></li>
+            <li><a href="bar.html">Bar</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+</nav>
+
+<!-- mobile sidebar reset -->
+<div class="mobile-sidebar" id="mobileSidebar">
+    <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+    <div class="brand"><img src="logo1.png" width="40" height="40"><div class="logo-text">Aberdare <span>Gardens</span></div></div>
+    <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="rooms.html">Rooms</a><a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a><a href="bar.html">Bar</a>
+    <div class="footer-social"><a href="https://www.facebook.com/karatinagardens"><i class="fab fa-facebook-f"></i></a><a href="https://www.tiktok.com/@aberdaregardens"><i class="fab fa-tiktok"></i></a></div>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Careers Hero -->
+<div class="careers-hero">
+    <div class="container">
+        <h1>Join the Aberdare Gardens Family</h1>
+        <p>Launch your career with us — attachments, on‑boarding training & in‑service programs designed to grow talent in hospitality excellence.</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Program Selection Cards -->
+    <div class="programs-grid">
+        <div class="program-card scroll-reveal">
+            <div class="program-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="badge">Industrial Attachment</div>
+            <h3>Attachment Program</h3>
+            <p>For college/university students seeking hands-on experience in front office, F&B, housekeeping & events. 3-6 months practical training.</p>
+            <button class="apply-btn" data-program="attachment"><i class="fas fa-paper-plane"></i> Apply Now</button>
+        </div>
+        <div class="program-card scroll-reveal">
+            <div class="program-icon"><i class="fas fa-chalkboard-user"></i></div>
+            <div class="badge">On‑boarding Training</div>
+            <h3>On‑boarding Program</h3>
+            <p>New hires & fresh talents: immersive orientation, service standards, safety protocols & brand culture. Get certified and integrated fast.</p>
+            <button class="apply-btn" data-program="onboarding"><i class="fas fa-briefcase"></i> Apply for Training</button>
+        </div>
+        <div class="program-card scroll-reveal">
+            <div class="program-icon"><i class="fas fa-sync-alt"></i></div>
+            <div class="badge">In‑Service Training</div>
+            <h3>In‑Service / Upskilling</h3>
+            <p>For hospitality professionals & career changers. Short courses, leadership modules & department-specific masterclasses.</p>
+            <button class="apply-btn" data-program="inservice"><i class="fas fa-user-plus"></i> Enroll Now</button>
+        </div>
+    </div>
+
+    <!-- extra info block -->
+    <div class="info-section scroll-reveal">
+        <div class="info-item"><i class="fas fa-calendar-alt"></i><h4>Flexible Intake</h4><p>Rolling admissions for attachments & training</p></div>
+        <div class="info-item"><i class="fas fa-certificate"></i><h4>Certification</h4><p>Recognized certificates upon completion</p></div>
+        <div class="info-item"><i class="fas fa-hand-holding-heart"></i><h4>Mentorship</h4><p>Guidance by industry experts & resort leaders</p></div>
+    </div>
+</div>
+
+<!-- Universal Application Modal (dynamic fields based on training type) -->
+<div id="careerModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" id="closeCareerModalBtn">&times;</button>
+        <h3 id="modalTitle">Apply for Program</h3>
+        <h4 id="programSubtype"></h4>
+        <form id="careerApplicationForm">
+            <input type="hidden" id="selectedProgram" name="programType">
+            <div class="form-group"><label>Full Name *</label><input type="text" id="fullName" required placeholder="e.g. Jane Mwangi"></div>
+            <div class="double-field">
+                <div class="form-group"><label>Email *</label><input type="email" id="appEmail" required placeholder="you@example.com"></div>
+                <div class="form-group"><label>Phone *</label><input type="tel" id="appPhone" required placeholder="+2547XXXXXXXX"></div>
+            </div>
+            <div class="form-group"><label>Education/Institution (if any)</label><input type="text" id="institution" placeholder="University / College / School"></div>
+            <div class="form-group"><label>Preferred Start Date</label><input type="date" id="startDate"></div>
+            <div class="form-group"><label>Upload CV / Resume (PDF, DOC)</label>
+                <input type="file" id="cvFile" accept=".pdf,.doc,.docx">
+                <div class="upload-hint">Optional but recommended — attach your CV</div>
+            </div>
+            <div class="form-group"><label>Additional Message / Cover Note</label><textarea id="coverMsg" rows="3" placeholder="Tell us about your motivation, skills or experience..."></textarea></div>
+            <button type="submit" class="submit-career-btn"><i class="fab fa-whatsapp"></i> Submit Application</button>
+        </form>
+        <p style="font-size:0.75rem; text-align:center; margin-top:16px;">By applying, you agree to our training terms. Our HR team will contact you within 3 days.</p>
+    </div>
+</div>
+
+<div id="toastMsg" class="toast-msg"></div>
+<div class="whatsapp-float" id="whatsappFloatBtn"><i class="fab fa-whatsapp"></i></div>
+
+<footer class="footer">
+    <p>&copy; 2025 Aberdare Gardens Resort – Karatina | Building Hospitality Excellence</p>
+    <p style="font-size:0.8rem;">Karatina Gaikuyu Road |  +254 713 509 985 | careers@aberdaregardens.co.ke</p>
+</footer>
+
+<script>
+(function() {
+    // Helper functions
+    function showToast(msg, isError = false) {
+        const toast = document.getElementById("toastMsg");
+        if(!toast) return;
+        toast.innerText = msg;
+        toast.style.backgroundColor = isError ? "#b33" : "#1e3c2c";
+        toast.style.opacity = "1";
+        setTimeout(() => toast.style.opacity = "0", 3000);
+    }
+
+    // Send application data to WhatsApp (HR)
+    function sendApplicationToWhatsApp(program, formDataObj) {
+        let message = `*NEW CAREER APPLICATION - ABERDARE GARDENS*%0A%0A`;
+        message += ` *Program Type:* ${program}%0A`;
+        message += ` *Name:* ${encodeURIComponent(formDataObj.fullName)}%0A`;
+        message += ` *Email:* ${encodeURIComponent(formDataObj.email)}%0A`;
+        message += ` *Phone:* ${encodeURIComponent(formDataObj.phone)}%0A`;
+        message += ` *Institution:* ${encodeURIComponent(formDataObj.institution || 'Not specified')}%0A`;
+        message += ` *Start Date:* ${encodeURIComponent(formDataObj.startDate || 'Flexible')}%0A`;
+        message += ` *Message:* ${encodeURIComponent(formDataObj.message || 'No additional info')}%0A`;
+        message += ` *CV attached?* ${formDataObj.hasCV ? 'Yes (file included manually)' : 'No CV attached'}%0A%0A`;
+        message += `--- Application from Aberdare Careers Page ---`;
+        const whatsappNumber = "254713509985";
+        const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    // handle file reading if needed (optional, but we can provide data uri for reference - but due to wa limitations we just notify)
+    // For simplicity we will just notify that CV is included; user will resend manually or HR contacts.
+    // We simulate submission and show toast.
+    const modal = document.getElementById("careerModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const programSubtypeSpan = document.getElementById("programSubtype");
+    const selectedProgramInput = document.getElementById("selectedProgram");
+    const closeModalBtn = document.getElementById("closeCareerModalBtn");
+    const careerForm = document.getElementById("careerApplicationForm");
+
+    let currentProgram = "";
+
+    // open modal handler from each apply button
+    const applyBtns = document.querySelectorAll(".apply-btn");
+    applyBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const programVal = btn.getAttribute("data-program");
+            if(programVal === "attachment") {
+                currentProgram = "Industrial Attachment";
+                modalTitle.innerText = " Attachment Application";
+                programSubtypeSpan.innerText = "Industrial Attachment (3-6 months) | College/University students";
+            } else if(programVal === "onboarding") {
+                currentProgram = "On‑boarding Training";
+                modalTitle.innerText = " On‑boarding Training";
+                programSubtypeSpan.innerText = "Entry-level orientation & hospitality foundation";
+            } else if(programVal === "inservice") {
+                currentProgram = "In‑Service / Upskilling";
+                modalTitle.innerText = " In‑Service Training";
+                programSubtypeSpan.innerText = "Professional development & advanced modules";
+            }
+            selectedProgramInput.value = currentProgram;
+            // reset form fields (except file input, we reset manually)
+            careerForm.reset();
+            document.getElementById("fullName").value = "";
+            document.getElementById("appEmail").value = "";
+            document.getElementById("appPhone").value = "";
+            document.getElementById("institution").value = "";
+            document.getElementById("startDate").value = "";
+            document.getElementById("coverMsg").value = "";
+            // clear file input? better to reset via new clone but we simply create a new reference (safe)
+            const fileInput = document.getElementById("cvFile");
+            if(fileInput) fileInput.value = "";
+            modal.classList.add("active");
+        });
+    });
+
+    // modal close
+    function closeModal() { modal.classList.remove("active"); }
+    if(closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+    window.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape" && modal.classList.contains("active")) closeModal(); });
+
+    // handle form submission
+    careerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById("fullName")?.value.trim();
+        const email = document.getElementById("appEmail")?.value.trim();
+        const phone = document.getElementById("appPhone")?.value.trim();
+        const institution = document.getElementById("institution")?.value.trim() || "";
+        const startDate = document.getElementById("startDate")?.value || "";
+        const message = document.getElementById("coverMsg")?.value.trim() || "";
+        const program = selectedProgramInput.value;
+
+        if(!fullName) { showToast("Please enter your full name", true); return; }
+        if(!email || !email.includes("@")) { showToast("Valid email required", true); return; }
+        if(!phone) { showToast("Phone number is required", true); return; }
+
+        const cvFile = document.getElementById("cvFile").files[0];
+        let hasCV = false;
+        let cvInfo = "";
+        if(cvFile) {
+            hasCV = true;
+            cvInfo = `📎 CV Filename: ${cvFile.name} (${(cvFile.size/1024).toFixed(1)} KB)`;
+        }
+
+        // build data object
+        const formDataObj = {
+            fullName: fullName,
+            email: email,
+            phone: phone,
+            institution: institution,
+            startDate: startDate,
+            message: message,
+            hasCV: hasCV,
+            cvInfo: cvInfo
+        };
+
+        // if CV exists we show a note that HR will request file directly (or user can reattach)
+        let confirmationMsg = `Application for ${program} submitted successfully! Our HR will contact you via WhatsApp/email within 48hrs.`;
+        showToast(confirmationMsg);
+        
+        // Send formatted WhatsApp message to careers line
+        let waMsg = `* NEW CAREER APPLICATION*%0A`;
+        waMsg += `━━━━━━━━━━━━━━━━%0A`;
+        waMsg += ` *Program*: ${encodeURIComponent(program)}%0A`;
+        waMsg += ` *Name*: ${encodeURIComponent(fullName)}%0A`;
+        waMsg += ` *Email*: ${encodeURIComponent(email)}%0A`;
+        waMsg += `*Phone*: ${encodeURIComponent(phone)}%0A`;
+        waMsg += ` *Institution*: ${encodeURIComponent(institution || 'N/A')}%0A`;
+        waMsg += ` *Start Date*: ${encodeURIComponent(startDate || 'Flexible')}%0A`;
+        waMsg += ` *Message*: ${encodeURIComponent(message.substring(0, 300))}%0A`;
+        if(hasCV) waMsg += `📎 *CV attached*: ${encodeURIComponent(cvFile.name)} (send separately or request)%0A`;
+        waMsg += `━━━━━━━━━━━━━━━━%0ASubmitted via Aberdare Careers Hub`;
+        
+        const hrWhatsapp = "254713509985";
+        window.open(`https://wa.me/${hrWhatsapp}?text=${waMsg}`, '_blank', 'noopener,noreferrer');
+        
+        // reset form and close modal after short delay
+        careerForm.reset();
+        setTimeout(() => closeModal(), 1500);
+        // also clear file input value
+        const fileResetter = document.getElementById("cvFile");
+        if(fileResetter) fileResetter.value = "";
+    });
+
+    // Mobile sidebar logic
+    const mobileSidebar = document.getElementById("mobileSidebar");
+    const overlaySide = document.getElementById("sidebarOverlay");
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+    function openSidebar() { mobileSidebar?.classList.add("open"); overlaySide?.classList.add("active"); document.body.style.overflow = "hidden"; }
+    function closeSidebarFunc() { mobileSidebar?.classList.remove("open"); overlaySide?.classList.remove("active"); document.body.style.overflow = ""; }
+    if(mobileMenuBtn) mobileMenuBtn.addEventListener("click", openSidebar);
+    if(closeSidebarBtn) closeSidebarBtn.addEventListener("click", closeSidebarFunc);
+    if(overlaySide) overlaySide.addEventListener("click", closeSidebarFunc);
+
+    // WhatsApp float
+    const waFloat = document.getElementById("whatsappFloatBtn");
+    if(waFloat) waFloat.addEventListener("click", () => { window.open("https://wa.me/254713509985?text=Hello%20Aberdare%20Gardens%2C%20I'm%20interested%20in%20careers%20or%20training%20programs", '_blank'); });
+
+    // Intersection Observer for scroll reveal
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    if(reveals.length && 'IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1, rootMargin: "10px" });
+        reveals.forEach(el => obs.observe(el));
+    } else { reveals.forEach(el => el.classList.add('revealed')); }
+    
+    // avoid any unsafe console errors from external links & missing globals
+    window.renderMenu = window.renderMenu || function(){};
+})();
+</script>
+</body>
+</html>

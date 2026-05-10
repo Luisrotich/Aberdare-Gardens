@@ -564,6 +564,103 @@
     transform:translateY(-4px) scale(1.08);
     box-shadow:0 8px 18px rgba(0,0,0,0.25);
 }
+/* =========================
+   REVIEWS SECTION
+========================= */
+
+.reviews-section{
+    width:100%;
+    padding:70px 0;
+    background:#f9f6ed;
+    overflow:hidden;
+}
+
+.reviews-header{
+    text-align:center;
+    margin-bottom:40px;
+    color:#fff;
+}
+
+.reviews-header h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.reviews-header p{
+    color:#2d2c2c;
+    font-size:16px;
+}
+
+.reviews-marquee{
+    width:100%;
+    overflow:hidden;
+    position:relative;
+}
+
+.reviews-track{
+    display:flex;
+    gap:25px;
+    width:max-content;
+    animation:scrollReviews 35s linear infinite;
+}
+
+.review-card{
+    min-width:320px;
+    max-width:320px;
+    background:#2e7802;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    color:#fff;
+    transition:0.3s ease;
+}
+
+.review-card:hover{
+    transform:translateY(-8px);
+}
+
+.stars{
+    color:gold;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.review-card p{
+    font-size:15px;
+    line-height:1.7;
+    color:#ddd;
+    margin-bottom:20px;
+}
+
+.review-card h4{
+    font-size:15px;
+    color:#ffa600;
+}
+
+/* AUTO SCROLL ANIMATION */
+@keyframes scrollReviews{
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .review-card{
+        min-width:260px;
+        max-width:260px;
+    }
+
+    .reviews-header h2{
+        font-size:28px;
+    }
+
+}
   </style>
 </head>
 <body>
@@ -594,6 +691,8 @@
       <li><a href="events.html">Events</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="contact.html">Contact</a></li>
+                  <li><a href="careers.html" style="color:#ffdd99;">Careers</a></li>
+
       <li><a href="bar.html">Bar</a></li>
     </ul>
     <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
@@ -607,13 +706,9 @@
     <img src="logo1.png" alt="Logo">
     <div class="logo-text">Aberdare <span>Gardens</span></div>
   </div>
-  <a href="index.html">Home</a>
-  <a href="menu.html">Menu</a>
-  <a href="rooms.html">Rooms</a>
-  <a href="events.html">Events</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-  <a href="bar.html">Bar</a>
+  <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="rooms.html">Rooms</a><a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a><a href="bar.html">Bar</a>
+   
   <div class="footer-social">
     <a href="https://www.facebook.com/karatinagardens"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.tiktok.com/@aberdaregardens?_r=1&_t=ZS-961Q5aNZFJP"><i class="fab fa-tiktok"></i></a>
@@ -717,7 +812,91 @@ To deliver world-class hospitality through impeccable service, refined spaces, a
     </div>
   </div>
 </section>
+<!-- =========================
+     ABERDARE GARDENS REVIEWS
+========================== -->
 
+<section class="reviews-section">
+
+    <div class="reviews-header">
+        <h2>Guest Reviews</h2>
+        <p>What guests say about Aberdare Gardens Restaurant</p>
+    </div>
+
+    <div class="reviews-marquee">
+
+        <div class="reviews-track">
+
+            <!-- REVIEW 1 -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "Amazing food, peaceful environment and excellent customer service.
+                    The nyama choma was perfect!"
+                </p>
+                <h4>— Brian M.</h4>
+            </div>
+
+            <!-- REVIEW 2 -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "One of the best garden restaurants in Kenya.
+                    Beautiful atmosphere and very relaxing."
+                </p>
+                <h4>— Sharon K.</h4>
+            </div>
+
+            <!-- REVIEW 3 -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "The rooms are clean, food is delicious and the service is top-tier."
+                </p>
+                <h4>— Kevin R.</h4>
+            </div>
+
+            <!-- REVIEW 4 -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "Perfect place for family events and weekend relaxation."
+                </p>
+                <h4>— Cynthia W.</h4>
+            </div>
+
+            <!-- REVIEW 5 -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "Loved the cocktails and the outdoor sitting area. Highly recommend."
+                </p>
+                <h4>— James T.</h4>
+            </div>
+
+            <!-- DUPLICATES FOR SMOOTH LOOP -->
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "Amazing food, peaceful environment and excellent customer service."
+                </p>
+                <h4>— Brian M.</h4>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "One of the best garden restaurants in Kenya."
+                </p>
+                <h4>— Sharon K.</h4>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 <!-- WhatsApp Float + Toast -->
 <div class="whatsapp-float" id="whatsappFloatBtn">
   <i class="fab fa-whatsapp"></i>
