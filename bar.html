@@ -527,53 +527,330 @@
 <script>
 // ========== COMPLETE BAR MENU ==========
 const menuItems = [
-    { id:1, name:"Johnnie Walker Black Label", category:"Whisky", img:"images/A1.jpg", desc:"Iconic smoky blend, 12 years" },
-    { id:2, name:"Johnnie Walker Red Label", category:"Whisky", img:"images/A2.jpg", desc:"Bold & versatile" },
-    { id:3, name:"Chivas Regal 12", category:"Whisky", img:"images/A3.jpg", desc:"Smooth & honeyed luxury" },
-    { id:4, name:"Black & White", category:"Whisky", img:"images/A4.jpg", desc:"Classic blended scotch" },
-    { id:5, name:"Jameson Irish Whiskey", category:"Whisky", img:"images/A5.jpg", desc:"Triple distilled, smooth" },
-    { id:6, name:"Jack Daniel's Honey", category:"Whisky", img:"images/A6.jpg", desc:"Tennessee honey liqueur" },
-    { id:7, name:"Jack Daniel's Old No.7", category:"Whisky", img:"images/A7.jpg", desc:"Charcoal mellowed" },
-    { id:8, name:"Glenfiddich 12", category:"Whisky", img:"images/A8.jpg", desc:"Single malt, pear notes" },
-    { id:9, name:"Grant's Whisky", category:"Whisky", img:"images/A9.jpg", desc:"Family reserve" },
-    { id:10, name:"Famous Grouse", category:"Whisky", img:"images/A10.jpg", desc:"Smooth & rich" },
-    { id:11, name:"Green Label (JW)", category:"Whisky", img:"images/A11.jpg", desc:"Pure malt blend" },
-    { id:12, name:"Double Black (JW)", category:"Whisky", img:"images/A12.jpg", desc:"Intensely smoky" },
-    { id:13, name:"Vat 69", category:"Whisky", img:"images/A13.jpg", desc:"Old classic blend" },
-    { id:14, name:"William Lawson's", category:"Whisky", img:"images/A14.jpg", desc:"Scottish blend" },
-    { id:15, name:"Singleton", category:"Whisky", img:"images/A15.jpg", desc:"Smooth single malt" },
-    { id:16, name:"Smirnoff Vodka (1L)", category:"Vodka", img:"images/A16.jpg", desc:"Crisp & versatile" },
-    { id:17, name:"KC Vodka (½ & mzinga)", category:"Vodka", img:"images/A17.jpg", desc:"Kenyan classic" },
-    { id:18, name:"Opium Vodka", category:"Vodka", img:"images/A18.jpg", desc:"Premium smooth" },
-    { id:19, name:"Captain Morgan (Spiced)", category:"Rum & Liqueur", img:"images/A19.jpg", desc:"Caribbean gold" },
-    { id:20, name:"Jägermeister 700ml", category:"Rum & Liqueur", img:"images/A20.jpg", desc:"Herbal digestif" },
-    { id:21, name:"Malibu Coconut Rum", category:"Rum & Liqueur", img:"images/A21.jpg", desc:"Tropical sweetness" },
-    { id:22, name:"Southern Comfort", category:"Rum & Liqueur", img:"images/A22.jpg", desc:"Spiced fruit liqueur" },
-    { id:23, name:"Tanqueray Gin", category:"Gin & Brandy", img:"images/A23.jpg", desc:"London dry, crisp" },
-    { id:24, name:"Tanqueray Ten", category:"Gin & Brandy", img:"images/A24.jpg", desc:"Premium citrus forward" },
-    { id:25, name:"Gilbey's Gin", category:"Gin & Brandy", img:"images/A25.jpg", desc:"Classic dry" },
-    { id:26, name:"Viceroy Brandy (½ & 750ml)", category:"Gin & Brandy", img:"images/A26.jpg", desc:"Smooth brandy" },
-    { id:27, name:"Richot Brandy (½ & 750ml)", category:"Gin & Brandy", img:"images/A27.jpg", desc:"Aged elegance" },
-    { id:28, name:"Bond Brandy", category:"Gin & Brandy", img:"images/A28.jpg", desc:"Deep oak notes" },
-    { id:29, name:"Cellar Cask Red", category:"Wine & Champagne", img:"images/A29.jpg", desc:"Smooth table wine" },
-    { id:30, name:"d'rosta Sauvignon", category:"Wine & Champagne", img:"images/A30.jpg", desc:"Crisp white" },
-    { id:31, name:"4th Street (Sweet)", category:"Wine & Champagne", img:"images/A31.jpg", desc:"Fruity bubbly" },
-    { id:32, name:"Dunhill Cigar", category:"Cigars & Spirits", img:"images/A32.jpg", desc:"Premium hand-rolled" },
-    { id:33, name:"Embassy Cigar", category:"Cigars & Spirits", img:"images/A33.jpg", desc:"Smooth aromatic" },
-    { id:34, name:"Hennessy VS", category:"Cigars & Spirits", img:"images/A34.jpg", desc:"Cognac excellence" },
-    { id:35, name:"Dawa Cocktail", category:"Cocktails & Mixers", img:"images/A35.jpg", desc:"Vodka, honey, lime, chili" },
-    { id:36, name:"Pink Licodori", category:"Cocktails & Mixers", img:"images/A36.jpg", desc:"Creamy pink liqueur" },
-    { id:37, name:"Lemonade & Mint Julep", category:"Cocktails & Mixers", img:"images/A37.jpg", desc:"Refreshing mocktail" },
-    { id:38, name:"Damonte Limoncello", category:"Cocktails & Mixers", img:"images/A38.jpg", desc:"Italian lemon spirit" },
-    { id:39, name:"Tusker Lager", category:"Local & Kenyan Brews", img:"images/A39.jpg", desc:"Kenya's pride" },
-    { id:40, name:"Tusker Malt", category:"Local & Kenyan Brews", img:"images/A40.jpg", desc:"Premium lager" },
-    { id:41, name:"White Cap Lager", category:"Local & Kenyan Brews", img:"images/A41.jpg", desc:"Crisp & easy" },
-    { id:42, name:"Kerrow Gold Cider", category:"Local & Kenyan Brews", img:"images/A42.jpg", desc:"Apple cider" },
-    { id:43, name:"Savanna Dry", category:"Local & Kenyan Brews", img:"images/A43.jpg", desc:"Premium cider" },
-    { id:44, name:"Fresh Juice (Mango/Passion)", category:"Soft Drinks & Refreshments", img:"images/A44.jpg", desc:"Cold pressed" },
-    { id:45, name:"Kenyan Coffee (AA)", category:"Soft Drinks & Refreshments", img:"images/A45.jpg", desc:"Rich & aromatic" },
-    { id:46, name:"Soda Selection", category:"Soft Drinks & Refreshments", img:"images/A46.jpg", desc:"Coke, Sprite, Fanta" }
+    { 
+        id:1, 
+        name:"Johnnie Walker Black Label", 
+        category:"Whisky", 
+        img:"https://soys.co.ke", 
+        desc:"Iconic smoky blend, 12 years" 
+    },
+    { 
+        id:2, 
+        name:"Johnnie Walker Red Label", 
+        category:"Whisky", 
+        img:"https://jayswines.com", 
+        desc:"Bold & versatile" 
+    },
+    { 
+        id:3, 
+        name:"Chivas Regal 12", 
+        category:"Whisky", 
+        img:"https://chupachap.co.ke", 
+        desc:"Smooth & honeyed luxury" 
+    },
+    { 
+        id:4, 
+        name:"Black & White", 
+        category:"Whisky", 
+        img:"https://oaks.delivery", 
+        desc:"Classic blended scotch" 
+    },
+    { 
+        id:5, 
+        name:"Jameson Irish Whiskey", 
+        category:"Whisky", 
+        img:"https://soys.co.ke", 
+        desc:"Triple distilled, smooth" 
+    },
+    { 
+        id:6, 
+        name:"Jack Daniel's Honey", 
+        category:"Whisky", 
+        img:"https://oaks.delivery", 
+        desc:"Tennessee honey liqueur" 
+    },
+    { 
+        id:7, 
+        name:"Jack Daniel's Old No.7", 
+        category:"Whisky", 
+        img:"https://villagemarketcellar.co.ke", 
+        desc:"Charcoal mellowed" 
+    },
+    { 
+        id:8, 
+        name:"Glenfiddich 12", 
+        category:"Whisky", 
+        img:"https://sizzleliquors.co.ke", 
+        desc:"Single malt, pear notes" 
+    },
+    { 
+        id:9, 
+        name:"Grant's Whisky", 
+        category:"Whisky", 
+        img:"https://soys.co.ke", 
+        desc:"Family reserve" 
+    },
+    { 
+        id:10, 
+        name:"Famous Grouse", 
+        category:"Whisky", 
+        img:"https://montyskenya.com", 
+        desc:"Smooth & rich" 
+    },
+    { 
+        id:11, 
+        name:"Green Label (JW)", 
+        category:"Whisky", 
+        img:"https://jayswines.com", 
+        desc:"Pure malt blend" 
+    },
+    { 
+        id:12, 
+        name:"Double Black (JW)", 
+        category:"Whisky", 
+        img:"https://chupachap.co.ke", 
+        desc:"Intensely smoky" 
+    },
+    { 
+        id:13, 
+        name:"Vat 69", 
+        category:"Whisky", 
+        img:"https://oaks.delivery", 
+        desc:"Old classic blend" 
+    },
+    { 
+        id:14, 
+        name:"William Lawson's", 
+        category:"Whisky", 
+        img:"https://jayswines.com", 
+        desc:"Scottish blend" 
+    },
+    { 
+        id:15, 
+        name:"Singleton", 
+        category:"Whisky", 
+        img:"https://sizzleliquors.co.ke", 
+        desc:"Smooth single malt" 
+    },
+    { 
+        id:16, 
+        name:"Smirnoff Vodka (1L)", 
+        category:"Vodka", 
+        img:"https://jayswines.com", 
+        desc:"Crisp & versatile" 
+    },
+    { 
+        id:17, 
+        name:"KC Vodka (½ & mzinga)", 
+        category:"Vodka", 
+        img:"https://oaks.delivery", 
+        desc:"Kenyan classic" 
+    },
+    { 
+        id:18, 
+        name:"Opium Vodka", 
+        category:"Vodka", 
+        img:"https://chupachap.co.ke", 
+        desc:"Premium smooth" 
+    },
+    { 
+        id:19, 
+        name:"Captain Morgan (Spiced)", 
+        category:"Rum & Liqueur", 
+        img:"https://jayswines.com", 
+        desc:"Caribbean gold" 
+    },
+    { 
+        id:20, 
+        name:"Jägermeister 700ml", 
+        category:"Rum & Liqueur", 
+        img:"https://oaks.delivery", 
+        desc:"Herbal digestif" 
+    },
+    { 
+        id:21, 
+        name:"Malibu Coconut Rum", 
+        category:"Rum & Liqueur", 
+        img:"https://soys.co.ke", 
+        desc:"Tropical sweetness" 
+    },
+    { 
+        id:22, 
+        name:"Southern Comfort", 
+        category:"Rum & Liqueur", 
+        img:"https://chupachap.co.ke", 
+        desc:"Spiced fruit liqueur" 
+    },
+    { 
+        id:23, 
+        name:"Tanqueray Gin", 
+        category:"Gin & Brandy", 
+        img:"https://jayswines.com", 
+        desc:"London dry, crisp" 
+    },
+    { 
+        id:24, 
+        name:"Tanqueray Ten", 
+        category:"Gin & Brandy", 
+        img:"https://montyskenya.com", 
+        desc:"Premium citrus forward" 
+    },
+    { 
+        id:25, 
+        name:"Gilbey's Gin", 
+        category:"Gin & Brandy", 
+        img:"https://jayswines.com", 
+        desc:"Classic dry" 
+    },
+    { 
+        id:26, 
+        name:"Viceroy Brandy (½ & 750ml)", 
+        category:"Gin & Brandy", 
+        img:"https://chupachap.co.ke", 
+        desc:"Smooth brandy" 
+    },
+    { 
+        id:27, 
+        name:"Richot Brandy (½ & 750ml)", 
+        category:"Gin & Brandy", 
+        img:"https://oaks.delivery", 
+        desc:"Aged elegance" 
+    },
+    { 
+        id:28, 
+        name:"Bond Brandy", 
+        category:"Gin & Brandy", 
+        img:"https://jayswines.com", 
+        desc:"Deep oak notes" 
+    },
+    { 
+        id:29, 
+        name:"Cellar Cask Red", 
+        category:"Wine & Champagne", 
+        img:"https://soys.co.ke", 
+        desc:"Smooth table wine" 
+    },
+    { 
+        id:30, 
+        name:"d'rosta Sauvignon", 
+        category:"Wine & Champagne", 
+        img:"https://chupachap.co.ke", 
+        desc:"Crisp white" 
+    },
+    { 
+        id:31, 
+        name:"4th Street (Sweet)", 
+        category:"Wine & Champagne", 
+        img:"https://jayswines.com", 
+        desc:"Fruity bubbly" 
+    },
+    { 
+        id:32, 
+        name:"Dunhill Cigar", 
+        category:"Cigars & Spirits", 
+        img:"https://villagemarketcellar.co.ke", 
+        desc:"Premium hand-rolled" 
+    },
+    { 
+        id:33, 
+        name:"Embassy Cigar", 
+        category:"Cigars & Spirits", 
+        img:"https://soys.co.ke", 
+        desc:"Smooth aromatic" 
+    },
+    { 
+        id:34, 
+        name:"Hennessy VS", 
+        category:"Cigars & Spirits", 
+        img:"https://jayswines.com", 
+        desc:"Cognac excellence" 
+    },
+    { 
+        id:35, 
+        name:"Dawa Cocktail", 
+        category:"Cocktails & Mixers", 
+        img:"https://wikimedia.org", 
+        desc:"Vodka, honey, lime, chili" 
+    },
+    { 
+        id:36, 
+        name:"Pink Licodori", 
+        category:"Cocktails & Mixers", 
+        img:"https://chupachap.co.ke", 
+        desc:"Creamy pink liqueur" 
+    },
+    { 
+        id:37, 
+        name:"Lemonade & Mint Julep", 
+        category:"Cocktails & Mixers", 
+        img:"https://wikimedia.org", 
+        desc:"Refreshing mocktail" 
+    },
+    { 
+        id:38, 
+        name:"Damonte Limoncello", 
+        category:"Cocktails & Mixers", 
+        img:"https://oaks.delivery", 
+        desc:"Italian lemon spirit" 
+    },
+    { 
+        id:39, 
+        name:"Tusker Lager", 
+        category:"Local & Kenyan Brews", 
+        img:"https://jayswines.com", 
+        desc:"Kenya's pride" 
+    },
+    { 
+        id:40, 
+        name:"Tusker Malt", 
+        category:"Local & Kenyan Brews", 
+        img:"https://chupachap.co.ke", 
+        desc:"Premium lager" 
+    },
+    { 
+        id:41, 
+        name:"White Cap Lager", 
+        category:"Local & Kenyan Brews", 
+        img:"https://jayswines.com", 
+        desc:"Crisp & easy" 
+    },
+    { 
+        id:42, 
+        name:"Kerrow Gold Cider", 
+        category:"Local & Kenyan Brews", 
+        img:"https://chupachap.co.ke", 
+        desc:"Apple cider" 
+    },
+    { 
+        id:43, 
+        name:"Savanna Dry", 
+        category:"Local & Kenyan Brews", 
+        img:"https://jayswines.com", 
+        desc:"Premium cider" 
+    },
+    { 
+        id:44, 
+        name:"Fresh Juice (Mango/Passion)", 
+        category:"Soft Drinks & Refreshments", 
+        img:"https://wikimedia.org", 
+        desc:"Cold pressed" 
+    },
+    { 
+        id:45, 
+        name:"Kenyan Coffee (AA)", 
+        category:"Soft Drinks & Refreshments", 
+        img:"https://wikimedia.org", 
+        desc:"Rich & aromatic" 
+    },
+    { 
+        id:46, 
+        name:"Soda Selection", 
+        category:"Soft Drinks & Refreshments", 
+        img:"images/image13.jpeg", 
+        desc:"Coke, Sprite, Fanta" 
+    }
 ];
+
   
 let cart = [];
 let activeFilter = "all";

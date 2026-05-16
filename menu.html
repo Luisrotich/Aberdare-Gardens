@@ -485,9 +485,7 @@
         <div class="filter-option" data-filter="Seafood">🐟 Seafood</div>
         <div class="filter-option" data-filter="Fast Food">🍔 Fast Food</div>
         <div class="filter-option" data-filter="Breakfast">☀️ Breakfast</div>
-        <div class="filter-option" data-filter="Drinks (Non-Alc)">🥤 Drinks (Non-Alc)</div>
-        <div class="filter-option" data-filter="Kenyan Bar">🍻 Kenyan Bar (Alcohol)</div>
-        <div class="filter-option" data-filter="Specials">⭐ Chef Specials</div>
+       <div class="filter-option" data-filter="Specials">⭐ Chef Specials</div>
       </div>
     </div>
     <div class="card-grid" id="menuGrid"></div>
@@ -541,53 +539,52 @@ const menuItems = [
   { id:1, name:"French Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.15 (1).jpeg", desc:"Classic French breakfast" },
   { id:2, name:"Steak and Egg Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.15 (2).jpeg", desc:"Steak served with eggs" },
   { id:3, name:"Low Calories Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.15.jpeg", desc:"Healthy light breakfast" },
-  { id:4, name:"Mini Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.16 (1).jpeg", desc:"Simple morning meal" },
-  { id:5, name:"Full Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.16 (2).jpeg", desc:"Complete breakfast platter" },
+  { id:4, name:"Mokimo", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.16 (1).jpeg", desc:"Simple afternoon meal" },
+  { id:5, name:"Mandazi", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.16 (2).jpeg", desc:"Traditional Kenyan bread" },
   { id:6, name:"Morning Full Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.16 (3).jpeg", desc:"Heavy breakfast combo" },
-  { id:7, name:"Aberdare Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.16.jpeg", desc:"Signature Aberdare breakfast" },
-  { id:8, name:"Kenya Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.17 (1).jpeg", desc:"Traditional Kenyan breakfast" },
-  { id:9, name:"American Breakfast", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.17 (2).jpeg", desc:"American style breakfast" },
-  { id:10, name:"Spaghetti Bolognaise", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.40.17.jpeg", desc:"Rich beef bolognaise pasta" },
-  { id:11, name:"Spaghetti Napolitan", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.40.18 (1).jpeg", desc:"Tomato based spaghetti" },
-  { id:12, name:"Macoroni All Primavera", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.40.18.jpeg", desc:"Mixed vegetable macaroni" },
+  { id:7, name:"Pork", category:"Meat", img:"images/WhatsApp Image 2026-05-13 at 14.40.16.jpeg", desc:"Signature Aberdare breakfast" },
+  { id:8, name:"Rice and chapo", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.17 (1).jpeg", desc:"Traditional Kenyan meal" },
+  { id:9, name:"Samosa", category:"Breakfast", img:"images/WhatsApp Image 2026-05-13 at 14.40.17 (2).jpeg", desc:"Traditional Kenyan bread" },
+  { id:11, name:"Breakfast", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.40.18 (1).jpeg", desc:"with yams, arrowroots egss and sausages" },
+  { id:12, name:"Platter for 4 people", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.40.18.jpeg", desc:"Perfect for sharing" },
   { id:13, name:"Beef Stew", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.19 (1).jpeg", desc:"Slow cooked beef stew" },
   { id:14, name:"Beef Matoke", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.19 (2).jpeg", desc:"Beef served with matoke" },
   { id:15, name:"Fried Beef", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.19 (3).jpeg", desc:"Pan fried beef" },
   { id:16, name:"Beef Goulash", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.19.jpeg", desc:"Tender beef goulash" },
-  { id:17, name:"Pan Fried Pepper Steak", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.40.20 (1).jpeg", desc:"Pepper steak special" },
+  { id:17, name:"Picnic meal", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.40.20 (1).jpeg", desc:"Pepper steak special" },
   { id:18, name:"Boiled Beef", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.20 (2).jpeg", desc:"Soft boiled beef" },
   { id:19, name:"Aberdare Crazy Beef Special", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.40.20.jpeg", desc:"Chef special beef dish" },
-  { id:20, name:"Honey Glazed Pork Chops", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.40.21 (1).jpeg", desc:"Sweet glazed pork chops" },
-  { id:21, name:"Pork Ribs with Smoky Barbecue Sauce", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.40.21 (2).jpeg", desc:"BBQ pork ribs" },
-  { id:22, name:"Roast Pork Cutlets", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.40.21.jpeg", desc:"Roasted pork cutlets" },
+  { id:20, name:"Kukukienyenji with chipo", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.40.21 (1).jpeg", desc:"Sweet glazed pork chops with chips" },
+  { id:21, name:"Pork Ribs with Smoky Barbecue Sauce potatoes", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.21 (2).jpeg", desc:"BBQ pork ribs" },
+  { id:22, name:"Roast Pork Cutlets", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.40.21.jpeg", desc:"Roasted pork cutlets" },
   { id:23, name:"American Style Pork Ribs", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.40.22.jpeg", desc:"American BBQ ribs" },
   { id:24, name:"Barbecued Soy Marinated Pork", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.09 (1).jpeg", desc:"Soy marinated pork" },
   { id:25, name:"Sticky Chilli Pork Ribs", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.09 (2).jpeg", desc:"Sticky chilli ribs" },
-  { id:26, name:"Mukimo", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.09.jpeg", desc:"Traditional mashed potatoes" },
-  { id:27, name:"Chapati", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.10 (1).jpeg", desc:"Soft layered chapati" },
+  { id:26, name:"Uji power", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.09.jpeg", desc:"Traditional Kenyan dish" },
+  { id:27, name:"Fried fish tilapia", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.10 (1).jpeg", desc:"Crispy fried fish" },
   { id:28, name:"Rice", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.10 (2).jpeg", desc:"Steamed rice" },
   { id:29, name:"Ugali", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.10 (3).jpeg", desc:"Kenyan maize meal staple" },
   { id:30, name:"Roast Potato", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.10.jpeg", desc:"Golden roasted potatoes" },
   { id:31, name:"Matoke", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.11 (1).jpeg", desc:"Cooked green bananas" },
   { id:32, name:"Arrow Roots", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.11 (2).jpeg", desc:"Boiled arrow roots" },
-  { id:33, name:"Sweet Potatoes", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.11 (3).jpeg", desc:"Fresh sweet potatoes" },
-  { id:34, name:"Boiled Maize", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.11.jpeg", desc:"Boiled maize snack" },
-  { id:35, name:"Fried Pumpkin", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.12 (1).jpeg", desc:"Fried pumpkin pieces" },
+  { id:33, name:"wet fried fish", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.11 (3).jpeg", desc:"Wet fried fish" },
+  { id:34, name:"Wet fry NB kuku", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.11.jpeg", desc:"wet fry chicken" },
+  { id:35, name:"platter for 2", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.12 (1).jpeg", desc:"Delicious platter for two" },
   { id:36, name:"Chicken Marego", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.12 (2).jpeg", desc:"Classic chicken marego" },
   { id:37, name:"Chicken Curry", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.12 (3).jpeg", desc:"Creamy chicken curry" },
-  { id:38, name:"Rosemary Kienyeji Chicken", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.12.jpeg", desc:"Herb roasted kienyeji chicken" },
-  { id:39, name:"Southern Deep Fried Chicken", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.41.13 (1).jpeg", desc:"Crispy fried chicken" },
+  { id:38, name:"platter for 4 ", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.12.jpeg", desc:"Delicious platter for four" },
+  { id:39, name:"chapati", category:"Fast Food", img:"images/WhatsApp Image 2026-05-13 at 14.41.13 (1).jpeg", desc:"Traditional Kenyan flatbread" },
   { id:40, name:"Chicken Maryland", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.13 (2).jpeg", desc:"Chicken maryland special" },
   { id:41, name:"Aberdare Special Chicken", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.13.jpeg", desc:"Chef special chicken" },
   { id:42, name:"Chicken Tikka", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.14 (1).jpeg", desc:"Spiced tikka chicken" },
   { id:43, name:"Kienyenji Countryside Chicken", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.14.jpeg", desc:"Traditional kienyeji chicken" },
-  { id:44, name:"Mutton Fry", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.15 (1).jpeg", desc:"Fried mutton pieces" },
+  { id:44, name:"Mutton Fry with mokimo", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.15 (1).jpeg", desc:"Fried mutton pieces" },
   { id:45, name:"Mutton Stew", category:"Local Dishes", img:"images/WhatsApp Image 2026-05-13 at 14.41.15 (2).jpeg", desc:"Slow cooked mutton stew" },
-  { id:46, name:"BBQ Mutton Steak", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.15 (3).jpeg", desc:"Barbecue mutton steak" },
+  { id:46, name:"Mutton wet fry", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.15 (3).jpeg", desc:"Wet fried mutton" },
   { id:47, name:"Grilled Mutton Chops", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.15.jpeg", desc:"Juicy grilled chops" },
-  { id:48, name:"Grilled Tilapia Fillet", category:"Seafood", img:"images/WhatsApp Image 2026-05-13 at 14.41.16 (1).jpeg", desc:"Grilled fish fillet" },
-  { id:49, name:"Whole Tilapia", category:"Seafood", img:"images/WhatsApp Image 2026-05-13 at 14.41.16 (2).jpeg", desc:"Whole fried tilapia" },
-  { id:50, name:"Coconut Whole Fish", category:"Seafood", img:"images/WhatsApp Image 2026-05-13 at 14.41.16.jpeg", desc:"Fish in coconut sauce" }
+  { id:48, name:"platter for 4 people", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.16 (1).jpeg", desc:"Delicious platter for four" },
+  { id:49, name:"Mbuzi choma", category:"Nyama Choma", img:"images/WhatsApp Image 2026-05-13 at 14.41.16 (2).jpeg", desc:"Grilled goat meat" },
+  { id:50, name:"platter for 4 people", category:"Specials", img:"images/WhatsApp Image 2026-05-13 at 14.41.16.jpeg", desc:"Delicious platter for four" }
   
   
 ];
