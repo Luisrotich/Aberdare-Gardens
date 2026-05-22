@@ -482,18 +482,7 @@
         <input type="text" id="searchInput" placeholder="Search spirits, beers, cocktails...">
         <button class="filter-trigger" id="filterTriggerBtn"><i class="fas fa-sliders-h"></i></button>
       </div>
-      <div class="filter-dropdown" id="filterDropdown">
-        <div class="filter-option active-filter" data-filter="all">🍷 All Bar Delights</div>
-        <div class="filter-option" data-filter="Whisky">🥃 Whisky & Scotch</div>
-        <div class="filter-option" data-filter="Vodka">🍸 Vodka</div>
-        <div class="filter-option" data-filter="Rum & Liqueur">🍹 Rum / Liqueur</div>
-        <div class="filter-option" data-filter="Gin & Brandy">🍾 Gin & Brandy</div>
-        <div class="filter-option" data-filter="Wine & Champagne">🍷 Wine & Sparkling</div>
-        <div class="filter-option" data-filter="Cigars & Spirits">🚬 Cigars & Premium</div>
-        <div class="filter-option" data-filter="Cocktails & Mixers">🍹 Signature Mix</div>
-        <div class="filter-option" data-filter="Local & Kenyan Brews">🍺 Kenyan Brews</div>
-        <div class="filter-option" data-filter="Soft Drinks & Refreshments">🥤 Soft Drinks</div>
-      </div>
+     
     </div>
     <div class="card-grid" id="menuGrid"></div>
   </div>
@@ -527,330 +516,64 @@
 <script>
 // ========== COMPLETE BAR MENU ==========
 const menuItems = [
-    { 
-        id:1, 
-        name:"Johnnie Walker Black Label", 
-        category:"Whisky", 
-        img:"https://soys.co.ke", 
-        desc:"Iconic smoky blend, 12 years" 
-    },
-    { 
-        id:2, 
-        name:"Johnnie Walker Red Label", 
-        category:"Whisky", 
-        img:"https://jayswines.com", 
-        desc:"Bold & versatile" 
-    },
-    { 
-        id:3, 
-        name:"Chivas Regal 12", 
-        category:"Whisky", 
-        img:"https://chupachap.co.ke", 
-        desc:"Smooth & honeyed luxury" 
-    },
-    { 
-        id:4, 
-        name:"Black & White", 
-        category:"Whisky", 
-        img:"https://oaks.delivery", 
-        desc:"Classic blended scotch" 
-    },
-    { 
-        id:5, 
-        name:"Jameson Irish Whiskey", 
-        category:"Whisky", 
-        img:"https://soys.co.ke", 
-        desc:"Triple distilled, smooth" 
-    },
-    { 
-        id:6, 
-        name:"Jack Daniel's Honey", 
-        category:"Whisky", 
-        img:"https://oaks.delivery", 
-        desc:"Tennessee honey liqueur" 
-    },
-    { 
-        id:7, 
-        name:"Jack Daniel's Old No.7", 
-        category:"Whisky", 
-        img:"https://villagemarketcellar.co.ke", 
-        desc:"Charcoal mellowed" 
-    },
-    { 
-        id:8, 
-        name:"Glenfiddich 12", 
-        category:"Whisky", 
-        img:"https://sizzleliquors.co.ke", 
-        desc:"Single malt, pear notes" 
-    },
-    { 
-        id:9, 
-        name:"Grant's Whisky", 
-        category:"Whisky", 
-        img:"https://soys.co.ke", 
-        desc:"Family reserve" 
-    },
-    { 
-        id:10, 
-        name:"Famous Grouse", 
-        category:"Whisky", 
-        img:"https://montyskenya.com", 
-        desc:"Smooth & rich" 
-    },
-    { 
-        id:11, 
-        name:"Green Label (JW)", 
-        category:"Whisky", 
-        img:"https://jayswines.com", 
-        desc:"Pure malt blend" 
-    },
-    { 
-        id:12, 
-        name:"Double Black (JW)", 
-        category:"Whisky", 
-        img:"https://chupachap.co.ke", 
-        desc:"Intensely smoky" 
-    },
-    { 
-        id:13, 
-        name:"Vat 69", 
-        category:"Whisky", 
-        img:"https://oaks.delivery", 
-        desc:"Old classic blend" 
-    },
-    { 
-        id:14, 
-        name:"William Lawson's", 
-        category:"Whisky", 
-        img:"https://jayswines.com", 
-        desc:"Scottish blend" 
-    },
-    { 
-        id:15, 
-        name:"Singleton", 
-        category:"Whisky", 
-        img:"https://sizzleliquors.co.ke", 
-        desc:"Smooth single malt" 
-    },
-    { 
-        id:16, 
-        name:"Smirnoff Vodka (1L)", 
-        category:"Vodka", 
-        img:"https://jayswines.com", 
-        desc:"Crisp & versatile" 
-    },
-    { 
-        id:17, 
-        name:"KC Vodka (½ & mzinga)", 
-        category:"Vodka", 
-        img:"https://oaks.delivery", 
-        desc:"Kenyan classic" 
-    },
-    { 
-        id:18, 
-        name:"Opium Vodka", 
-        category:"Vodka", 
-        img:"https://chupachap.co.ke", 
-        desc:"Premium smooth" 
-    },
-    { 
-        id:19, 
-        name:"Captain Morgan (Spiced)", 
-        category:"Rum & Liqueur", 
-        img:"https://jayswines.com", 
-        desc:"Caribbean gold" 
-    },
-    { 
-        id:20, 
-        name:"Jägermeister 700ml", 
-        category:"Rum & Liqueur", 
-        img:"https://oaks.delivery", 
-        desc:"Herbal digestif" 
-    },
-    { 
-        id:21, 
-        name:"Malibu Coconut Rum", 
-        category:"Rum & Liqueur", 
-        img:"https://soys.co.ke", 
-        desc:"Tropical sweetness" 
-    },
-    { 
-        id:22, 
-        name:"Southern Comfort", 
-        category:"Rum & Liqueur", 
-        img:"https://chupachap.co.ke", 
-        desc:"Spiced fruit liqueur" 
-    },
-    { 
-        id:23, 
-        name:"Tanqueray Gin", 
-        category:"Gin & Brandy", 
-        img:"https://jayswines.com", 
-        desc:"London dry, crisp" 
-    },
-    { 
-        id:24, 
-        name:"Tanqueray Ten", 
-        category:"Gin & Brandy", 
-        img:"https://montyskenya.com", 
-        desc:"Premium citrus forward" 
-    },
-    { 
-        id:25, 
-        name:"Gilbey's Gin", 
-        category:"Gin & Brandy", 
-        img:"https://jayswines.com", 
-        desc:"Classic dry" 
-    },
-    { 
-        id:26, 
-        name:"Viceroy Brandy (½ & 750ml)", 
-        category:"Gin & Brandy", 
-        img:"https://chupachap.co.ke", 
-        desc:"Smooth brandy" 
-    },
-    { 
-        id:27, 
-        name:"Richot Brandy (½ & 750ml)", 
-        category:"Gin & Brandy", 
-        img:"https://oaks.delivery", 
-        desc:"Aged elegance" 
-    },
-    { 
-        id:28, 
-        name:"Bond Brandy", 
-        category:"Gin & Brandy", 
-        img:"https://jayswines.com", 
-        desc:"Deep oak notes" 
-    },
-    { 
-        id:29, 
-        name:"Cellar Cask Red", 
-        category:"Wine & Champagne", 
-        img:"https://soys.co.ke", 
-        desc:"Smooth table wine" 
-    },
-    { 
-        id:30, 
-        name:"d'rosta Sauvignon", 
-        category:"Wine & Champagne", 
-        img:"https://chupachap.co.ke", 
-        desc:"Crisp white" 
-    },
-    { 
-        id:31, 
-        name:"4th Street (Sweet)", 
-        category:"Wine & Champagne", 
-        img:"https://jayswines.com", 
-        desc:"Fruity bubbly" 
-    },
-    { 
-        id:32, 
-        name:"Dunhill Cigar", 
-        category:"Cigars & Spirits", 
-        img:"https://villagemarketcellar.co.ke", 
-        desc:"Premium hand-rolled" 
-    },
-    { 
-        id:33, 
-        name:"Embassy Cigar", 
-        category:"Cigars & Spirits", 
-        img:"https://soys.co.ke", 
-        desc:"Smooth aromatic" 
-    },
-    { 
-        id:34, 
-        name:"Hennessy VS", 
-        category:"Cigars & Spirits", 
-        img:"https://jayswines.com", 
-        desc:"Cognac excellence" 
-    },
-    { 
-        id:35, 
-        name:"Dawa Cocktail", 
-        category:"Cocktails & Mixers", 
-        img:"https://wikimedia.org", 
-        desc:"Vodka, honey, lime, chili" 
-    },
-    { 
-        id:36, 
-        name:"Pink Licodori", 
-        category:"Cocktails & Mixers", 
-        img:"https://chupachap.co.ke", 
-        desc:"Creamy pink liqueur" 
-    },
-    { 
-        id:37, 
-        name:"Lemonade & Mint Julep", 
-        category:"Cocktails & Mixers", 
-        img:"https://wikimedia.org", 
-        desc:"Refreshing mocktail" 
-    },
-    { 
-        id:38, 
-        name:"Damonte Limoncello", 
-        category:"Cocktails & Mixers", 
-        img:"https://oaks.delivery", 
-        desc:"Italian lemon spirit" 
-    },
-    { 
-        id:39, 
-        name:"Tusker Lager", 
-        category:"Local & Kenyan Brews", 
-        img:"https://jayswines.com", 
-        desc:"Kenya's pride" 
-    },
-    { 
-        id:40, 
-        name:"Tusker Malt", 
-        category:"Local & Kenyan Brews", 
-        img:"https://chupachap.co.ke", 
-        desc:"Premium lager" 
-    },
-    { 
-        id:41, 
-        name:"White Cap Lager", 
-        category:"Local & Kenyan Brews", 
-        img:"https://jayswines.com", 
-        desc:"Crisp & easy" 
-    },
-    { 
-        id:42, 
-        name:"Kerrow Gold Cider", 
-        category:"Local & Kenyan Brews", 
-        img:"https://chupachap.co.ke", 
-        desc:"Apple cider" 
-    },
-    { 
-        id:43, 
-        name:"Savanna Dry", 
-        category:"Local & Kenyan Brews", 
-        img:"https://jayswines.com", 
-        desc:"Premium cider" 
-    },
-    { 
-        id:44, 
-        name:"Fresh Juice (Mango/Passion)", 
-        category:"Soft Drinks & Refreshments", 
-        img:"https://wikimedia.org", 
-        desc:"Cold pressed" 
-    },
-    { 
-        id:45, 
-        name:"Kenyan Coffee (AA)", 
-        category:"Soft Drinks & Refreshments", 
-        img:"https://wikimedia.org", 
-        desc:"Rich & aromatic" 
-    },
-    { 
-        id:46, 
-        name:"Soda Selection", 
-        category:"Soft Drinks & Refreshments", 
-        img:"images/image13.jpeg", 
-        desc:"Coke, Sprite, Fanta" 
-    }
-];
+      { id: 1, name: "Jagermeister 700 mL", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.49.jpeg", desc: "Herbal liqueur, bold and iconic." },
+    { id: 2, name: "malibu", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.50.jpeg", desc: "Coconut rum liqueur, sweet and tropical." },
+    { id: 3, name: "Captain morgan", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.51.jpeg", desc: "Spiced rum, bold and flavorful." },
+    { id: 4, name: "Viceroy ½ & 5 years", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.52 (1).jpeg", desc: "Smooth blended whisky." },
+    { id: 5, name: "KC ½ & mzunga", category: "Whisky", img: "bar2/kc.jpeg", desc: "Premium spirit blend." },
+    { id: 6, name: "Smirnoff vodka = 1L", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.54.jpeg", desc: "Smooth vodka, triple distilled." },
+    { id: 7, name: "drosta", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.55.jpeg", desc: "Distinctive spirit." },
+    { id: 8, name: "Black label", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.56.jpeg", desc: "Iconic blended Scotch whisky." },
 
+
+// BAR 2 PRODUCTS (bar2 folder - remaining items)
+
+    { id: 26, name: "William Lawson's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.17.jpeg", desc: "Smooth blended Scotch with honeyed notes." },
+    { id: 27, name: "Singleton 12", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.18 (1).jpeg", desc: "Elegant single malt, delicate fruit & vanilla." },
+    { id: 28, name: "Jameson", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.19.jpeg", desc: "Triple-distilled Irish whiskey, signature smoothness." },
+    { id: 31, name: "Glendale", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.22 (1).jpeg", desc: "Cognac excellence, velvety and deep." },
+    { id: 30, name: "Grants", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.21.jpeg", desc: "Rich single malts blend, smoky & complex." },
+    { id: 31, name: "Hennessy", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.22 (1).jpeg", desc: "Cognac excellence, velvety and deep." },
+    { id: 32, name: "Famous Grouse", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.23.jpeg", desc: "Family reserve, balanced and mellow." },
+    { id: 34, name: "Johnnie Walker black Label", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.25.jpeg", desc: "Irish whiskey from Wicklow mountains." },
+    { id: 35, name: "Hedex", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.26 (1).jpeg", desc: "Scotland's favorite blended Scotch." },
+    { id: 36, name: "Dunhill", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.27.jpeg", desc: "Intense smoky layers, rich character." },
+    { id: 37, name: "Richot", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.28 (1).jpeg", desc: "Luxury blended Scotch, smooth & generous." },
+    { id: 38, name: "Johnnie Walker Red Label", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.29.jpeg", desc: "Classic blend, bold & timeless." },
+    { id: 39, name: "Pink Gordon", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.30.jpeg", desc: "Smooth grain whisky, easy-drinking." },
+    { id: 40, name: "Martel supper", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.31.jpeg", desc: "Refined Scotch, crafted with heritage." },
+    { id: 41, name: "Jack Daniel's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.32 (1).jpeg", desc: "London dry gin, crisp and botanical." },
+    { id: 42, name: "Jack Daniel's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.33.jpeg", desc: "Whiskey liqueur with fruity warmth." },
+    { id: 43, name: "William Lawson's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.17.jpeg", desc: "French style brandy, rich & smooth." },
+    { id: 44, name: "Jameson", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.18 (1).jpeg", desc: "Vibrant, bold, iconic entry blend." },
+    { id: 45, name: "Jameson", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.19.jpeg", desc: "Strawberry & raspberry infused gin." },
+    { id: 46, name: "Hennessy", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.20 (1).jpeg", desc: "X.O. cognac, complex and refined." },
+    { id: 47, name: "Grants", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.21.jpeg", desc: "Herbal liqueur, bold and iconic." },
+    { id: 48, name: "Glendale", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.22 (1).jpeg", desc: "Tennessee whiskey, charcoal-mellowed." },
+    { id: 49, name: "Famous Grouse", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.23.jpeg", desc: "Tennessee whiskey, charcoal-mellowed." },
+    { id: 38, name: "Johnnie Walker Red Label", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.29.jpeg", desc: "Classic blend, bold & timeless." },
+
+      { id: 2, name: "malibu", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.50.jpeg", desc: "Coconut rum liqueur, sweet and tropical." },
+    { id: 3, name: "Captain morgan", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.51.jpeg", desc: "Spiced rum, bold and flavorful." },
+    { id: 4, name: "Viceroy ½ & 5 years", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.52 (1).jpeg", desc: "Smooth blended whisky." },
+    { id: 5, name: "KC ½ & mzunga", category: "Whisky", img: "bar2/kc.jpeg", desc: "Premium spirit blend." },
+    { id: 6, name: "Smirnoff vodka = 1L", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.54.jpeg", desc: "Smooth vodka, triple distilled." },
+    { id: 7, name: "drosta", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.55.jpeg", desc: "Distinctive spirit." },
+    { id: 8, name: "Black label", category: "Whisky", img: "bar/WhatsApp Image 2026-05-22 at 20.35.56.jpeg", desc: "Iconic blended Scotch whisky." },
+
+
+    { id: 39, name: "Pink Gordon", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.30.jpeg", desc: "Smooth grain whisky, easy-drinking." },
+    { id: 40, name: "Martel supper", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.31.jpeg", desc: "Refined Scotch, crafted with heritage." },
+    { id: 41, name: "Jack Daniel's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.32 (1).jpeg", desc: "London dry gin, crisp and botanical." },
+    { id: 42, name: "Jack Daniel's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.33.jpeg", desc: "Whiskey liqueur with fruity warmth." },
+    { id: 43, name: "William Lawson's", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.17.jpeg", desc: "French style brandy, rich & smooth." },
+    { id: 44, name: "Jameson", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.18 (1).jpeg", desc: "Vibrant, bold, iconic entry blend." },
+    { id: 45, name: "Jameson", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.19.jpeg", desc: "Strawberry & raspberry infused gin." },
+    { id: 46, name: "Hennessy", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.20 (1).jpeg", desc: "X.O. cognac, complex and refined." },
+    { id: 47, name: "Grants", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.21.jpeg", desc: "Herbal liqueur, bold and iconic." },
+    { id: 48, name: "Glendale", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.22 (1).jpeg", desc: "Tennessee whiskey, charcoal-mellowed." },
+    { id: 49, name: "Famous Grouse", category: "Whisky", img: "bar2/WhatsApp Image 2026-05-22 at 21.31.23.jpeg", desc: "Tennessee whiskey, charcoal-mellowed." }
+];
   
 let cart = [];
 let activeFilter = "all";
