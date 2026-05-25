@@ -433,6 +433,29 @@
         .room-card, .event-card, .gallery-img { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
         .form-row { display: flex; gap: 1rem; flex-wrap: wrap; }
         .form-row .form-group { flex: 1; min-width: 140px; }
+        .explorebutton {
+    background: linear-gradient(135deg, #ff7b00, #ff3c00);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 60, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.explorebutton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 60, 0, 0.45);
+    background: linear-gradient(135deg, #ff8c1a, #ff4d1a);
+}
+
+.explorebutton:active {
+    transform: scale(0.97);
+}
     </style>
 </head>
 <body>
@@ -452,7 +475,9 @@
       <li><a href="careers.html" style="color:#ffdd99;">Careers</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    <button class="explorebutton" id="mobileMenuBtn">
+    Explore
+</button>
   </div>
 </nav>
 

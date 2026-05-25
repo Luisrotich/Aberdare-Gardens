@@ -750,6 +750,29 @@
   margin-bottom:20px;
   font-size:16px;
 }
+.explorebutton {
+    background: linear-gradient(135deg, #e4dd02, #ff3c00);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 60, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.explorebutton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 60, 0, 0.45);
+    background: linear-gradient(135deg, #ff8c1a, #ff4d1a);
+}
+
+.explorebutton:active {
+    transform: scale(0.97);
+}
   </style>
 </head>
 
@@ -774,7 +797,9 @@
 
       <li><a href="bar.html">Bar</a></li>
     </ul>
-    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    <button class="explorebutton" id="mobileMenuBtn">
+    Explore
+</button>
   </div>
 </nav>
 
